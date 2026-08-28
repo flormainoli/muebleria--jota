@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<style>
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-primary-container": "#ac9181",
+                "surface-dim": "#dfd9d6",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#444937",
+                "on-tertiary": "#ffffff",
+                "primary-fixed-dim": "#dec1af",
+                "on-secondary-fixed-variant": "#484743",
+                "secondary-fixed-dim": "#c9c6c1",
+                "on-background": "#1d1b1a",
+                "on-tertiary-container": "#949983",
+                "on-secondary-fixed": "#1c1c19",
+                "background": "#fff8f5",
+                "primary-container": "#3d2b1f",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#28180d",
+                "tertiary": "#181c0d",
+                "secondary-fixed": "#e6e2dd",
+                "primary": "#26170c",
+                "surface-container-highest": "#e8e1df",
+                "on-secondary-container": "#666460",
+                "surface-tint": "#705a4c",
+                "tertiary-container": "#2c3120",
+                "outline-variant": "#d2c4bc",
+                "tertiary-fixed-dim": "#c4c9b1",
+                "on-primary-fixed-variant": "#574335",
+                "secondary": "#605e5b",
+                "surface-container-high": "#eee7e4",
+                "surface-container-low": "#f9f2f0",
+                "tertiary-fixed": "#e0e5cc",
+                "inverse-on-surface": "#f6efed",
+                "inverse-primary": "#dec1af",
+                "on-surface-variant": "#4f453f",
+                "surface-bright": "#fff8f5",
+                "surface-variant": "#e8e1df",
+                "on-tertiary-fixed": "#191d0e",
+                "surface-container-lowest": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-surface": "#1d1b1a",
+                "primary-fixed": "#fbddca",
+                "secondary-container": "#e6e2dd",
+                "inverse-surface": "#33302e",
+                "surface": "#fff8f5",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "surface-container": "#f3ecea",
+                "outline": "#81756e"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-tablet": "32px",
+                "unit": "8px",
+                "section-gap": "128px",
+                "margin-mobile": "20px",
+                "gutter": "24px",
+                "margin-desktop": "64px"
+        },
+        "fontFamily": {
+                "headline-md": [
+                        "Poiret One"
+                ],
+                "headline-lg-mobile": [
+                        "Poiret One"
+                ],
+                "headline-lg": [
+                        "Poiret One"
+                ],
+                "headline-display": [
+                        "Poiret One"
+                ],
+                "body-lg": [
+                        "Manrope"
+                ],
+                "body-md": [
+                        "Manrope"
+                ],
+                "label-caps": [
+                        "Manrope"
+                ]
+        },
+        "fontSize": {
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-display": [
+                        "80px",
+                        {
+                                "lineHeight": "88px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Poiret+One&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+<div class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between">
+<div class="flex items-center gap-4">
+<img alt="MUEBLERÍA JOTA Logo" class="h-8 w-auto object-contain bg-primary rounded-full p-1" src="https://lh3.googleusercontent.com/aida/AEtjO1WTLhRJuS_CnS-gHtK_4FyKgYhctLtXoIRizfJAcF080SF03o6_VDdRpAxZb7FBQuKiY2RQc3X1BJPJpnxSsjmDci8KMIkGE5GLPxbgp_qilteseclknKty72y91lgZ-jksBh20JNvkC6rlz_wAUiOGjAUe79z1YbH2F_YNI2su7Nt8lCGzypAhvaTUw-px2XL6GF8ici_YPi5XdB5ytqwI0G1Fh830LWZu6neyEHVZqzbNn_O9SfvjMw">
+
+</div>
+<nav class="hidden md:flex items-center gap-10" data-active-classes="text-primary font-semibold">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" data-path="productos" href="#">Productos</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" data-path="quienes-somos" href="#">Quiénes somos</a>
+<a aria-current="page" class="transition-colors text-primary font-semibold" data-path="contacto" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="relative flex items-center cursor-pointer group">
+<span class="material-symbols-outlined text-primary group-hover:text-primary-container transition-colors">shopping_bag</span>
+<span class="absolute -top-1.5 -right-2 w-4 h-4 bg-primary text-on-primary text-[10px] rounded-full flex items-center justify-center font-bold">2</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full pt-20 bg-surface">
+<div class="flex flex-col w-full">
+<!-- Header Section -->
+<section class="w-full pt-margin-desktop pb-margin-tablet px-margin-mobile md:px-margin-tablet lg:px-margin-desktop max-w-[1280px] mx-auto">
+<div class="flex flex-col items-center justify-center text-center gap-6">
+<h1 class="font-headline-display text-headline-display text-primary tracking-tight uppercase">COMEDOR</h1>
+</div>
+</section>
+<!-- Products Grid -->
+<section class="w-full pb-section-gap px-margin-mobile md:px-margin-tablet lg:px-margin-desktop max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Producto 1: Mesa -->
+<article class="group flex flex-col gap-6 cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container-low rounded-DEFAULT overflow-hidden">
+<img alt="Mesa de Comedor" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A minimalist, high-end solid walnut dining table in a brightly lit contemporary studio setting with soft natural light. Clean lines, warm wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmw2xR1OffSxJARJCwwsBv8Wnvtefn0ddoiTp_X3ePZzrAaJ3hjhOPp1xVax0jt9GpcAvol_R30URSwZ5hk89O1OqUDj2NfA705gpY1PBz0iKLOO4_EFuexLWT377rlPL-gz7D1cBzlC-TBbkGDEA8dRVZizm2dsyBQT2I0z96CdqyXSygj43L2zB7LVVpAyyGtx88avPB56zHAKj_TkrbqlKLwds67PUlnObcGxlmdFkxXfDs10Q">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<button class="absolute bottom-4 right-4 w-10 h-10 bg-surface text-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+</button>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start gap-4">
+<h2 class="font-headline-md text-[24px] leading-[32px] text-primary">Mesa Cienfuegos</h2>
+<span class="font-body-md text-body-md text-on-surface-variant whitespace-nowrap">$2,450.00</span>
+</div>
+<span class="font-label-caps text-[10px] text-primary tracking-widest uppercase mt-2 group-hover:underline underline-offset-4 decoration-1">Ver más</span>
+</div>
+</article>
+<!-- Producto 2: Sillas -->
+<article class="group flex flex-col gap-6 cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container-low rounded-DEFAULT overflow-hidden">
+<img alt="Sillas de Comedor" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A set of two elegant modern dining chairs with walnut frames and cream upholstery, styled against a textured beige wall in a premium interior setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwoZe3ay5rTH1Ey0JYveJLDz3KY6LisKFdksIst2UmLbSswlG-kAMXahC0pNYwmXpPk1_Gea6Y2euv7Y2sPmIXGoUYB72NAwXzS0chnctlk-Pj_BrG6OQvj8agFJ7TiEkGZ2nqMjU2QtAR0g1ddFQ5h9ZAA71w_i70Xj7LCD8pi0igEdkIpXdk_6GsSzOQ9fhKZUOuG0vqlB5NF0yrJzIHs2rg5dMgsTyUc_SSoFx0sffjYA_t_4o">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<button class="absolute bottom-4 right-4 w-10 h-10 bg-surface text-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+</button>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start gap-4">
+<h2 class="font-headline-md text-[24px] leading-[32px] text-primary">Sillas Atrio (Set 2)</h2>
+<span class="font-body-md text-body-md text-on-surface-variant whitespace-nowrap">$890.00</span>
+</div>
+<span class="font-label-caps text-[10px] text-primary tracking-widest uppercase mt-2 group-hover:underline underline-offset-4 decoration-1">Ver más</span>
+</div>
+</article>
+<!-- Producto 3: Mueble para vinos -->
+<article class="group flex flex-col gap-6 cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container-low rounded-DEFAULT overflow-hidden">
+<img alt="Mueble para vinos" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A sophisticated tall wine cabinet made of dark stained oak with subtle brass detailing, standing in a dimly lit, luxurious room corner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDamN_uK5RI_GqwrjD5vSdeoZ9IQpBjNq0J2RGamMHaoX9P95GCRH_qro4oNnZW06QBIlZK7UHZnF0708RS4tzbeUbvyD64PqyJHPC7gFN1C19gG1hl6LItGcwbIC7FF4PLo9CzJ_pCNs6bvG00NhH-jEsUPrNgjs80bv4UO7iUTkwJesuuGUuCDsShBzPfNKeXa84YlbvpjULFMewiDvr9MSBsTbvUaWugLVOySgh2ueHRbqTDink">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<button class="absolute bottom-4 right-4 w-10 h-10 bg-surface text-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+</button>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start gap-4">
+<h2 class="font-headline-md text-[24px] leading-[32px] text-primary">Cava Sommelier</h2>
+<span class="font-body-md text-body-md text-on-surface-variant whitespace-nowrap">$3,200.00</span>
+</div>
+<span class="font-label-caps text-[10px] text-primary tracking-widest uppercase mt-2 group-hover:underline underline-offset-4 decoration-1">Ver más</span>
+</div>
+</article>
+<!-- Producto 4: Aparador -->
+<article class="group flex flex-col gap-6 cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container-low rounded-DEFAULT overflow-hidden">
+<img alt="Aparador" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A minimalist low sideboard or credenza in warm ash wood, with seamless flat-front doors, styled with a simple ceramic vase on top, bright luxury studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLploIJ_zbd8ofA44TVtMMtqZb2eZufAKd7dFm1ixJwdg6DuvgGddKZ5JTZulblPCy_lIebM7GKIyU6zGk27OQiC_vg79IeEbZLGTHoLkdsIU9dOhG2hjGPZ8A-kHN-zn7K0JgdtUu-hftG9sWofZV-RftAfwcHQxflp2Wg3SnZrLYqrFaqiRQBcbJj5_eTVgRKs8lYTqAtijgJljfwo4we8X3rQVD4BXV1gwMIi3vZAX7ABJcg90">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<button class="absolute bottom-4 right-4 w-10 h-10 bg-surface text-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+</button>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start gap-4">
+<h2 class="font-headline-md text-[24px] leading-[32px] text-primary">Aparador Litoral</h2>
+<span class="font-body-md text-body-md text-on-surface-variant whitespace-nowrap">$1,850.00</span>
+</div>
+<span class="font-label-caps text-[10px] text-primary tracking-widest uppercase mt-2 group-hover:underline underline-offset-4 decoration-1">Ver más</span>
+</div>
+</article>
+</div>
+</section>
+</div>
+</main>
+<footer class="w-full bg-surface-container-low pt-section-gap pb-12">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter border-b border-outline-variant/30 pb-16">
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<img alt="MUEBLERÍA-J Logo" class="h-8 w-auto object-contain opacity-80 bg-primary rounded-full p-1" src="https://lh3.googleusercontent.com/aida/AEtjO1WTLhRJuS_CnS-gHtK_4FyKgYhctLtXoIRizfJAcF080SF03o6_VDdRpAxZb7FBQuKiY2RQc3X1BJPJpnxSsjmDci8KMIkGE5GLPxbgp_qilteseclknKty72y91lgZ-jksBh20JNvkC6rlz_wAUiOGjAUe79z1YbH2F_YNI2su7Nt8lCGzypAhvaTUw-px2XL6GF8ici_YPi5XdB5ytqwI0G1Fh830LWZu6neyEHVZqzbNn_O9SfvjMw">
+<span class="font-headline-md text-headline-md text-primary">MUEBLERÍA JOTA</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Mobiliario de autor diseñado para trascender generaciones. Fabricado con maestría en el corazón de Argentina.</p>
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] uppercase">Industria Argentina</span>
+</div>
+<div class="md:col-span-2 md:col-start-6 flex flex-col gap-6">
+<h4 class="font-label-caps text-label-caps text-primary">Explorar</h4>
+<nav class="flex flex-col gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Colecciones</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Proyectos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Cuidados</a>
+</nav>
+</div>
+<div class="md:col-span-3 flex flex-col gap-6">
+<h4 class="font-label-caps text-label-caps text-primary">Contacto</h4>
+<div class="flex flex-col gap-4 text-on-surface-variant">
+<a class="hover:text-primary" href="mailto:hola@muebleria-j.com.ar">hola@muebleria-j.com.ar</a>
+<a class="hover:text-primary" href="tel:+541112345678">+54 11 1234-5678</a>
+<p class="">Buenos Aires, Argentina</p>
+</div>
+</div>
+<div class="md:col-span-2 flex flex-col gap-6">
+<h4 class="font-label-caps text-label-caps text-primary">Seguinos</h4>
+<div class="flex gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">
+<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">
+<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.5 3.96-1.65 5.54-1.16 1.58-2.92 2.69-4.86 3.04-1.94.35-4.01.16-5.83-.69-1.83-.85-3.32-2.38-4.14-4.18-.82-1.8-.97-3.92-.41-5.83.56-1.92 1.83-3.56 3.48-4.57 1.66-1.02 3.65-1.4 5.58-1.06v4.1c-1.15-.22-2.37-.02-3.37.58-1.01.6-1.78 1.58-2.09 2.71-.32 1.12-.17 2.37.4 3.38.58 1.01 1.56 1.77 2.69 2.1 1.13.32 2.36.18 3.37-.39 1.01-.58 1.78-1.57 2.1-2.7.32-1.12.18-2.35-.4-3.37v-14.1z"></path></svg>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">
+<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant font-label-caps text-[10px]">
+<span class="">© 2024 MUEBLERÍA-J MUEBLES. TODOS LOS DERECHOS RESERVADOS.</span>
+<div class="flex gap-8">
+<span class="">TERMINOS Y CONDICIONES</span>
+<span class="">POLITICA DE PRIVACIDAD</span>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>
