@@ -3,31 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mueblería Jota | Diseño contemporáneo con raíces argentinas</title>
-  <meta name="description" content="Mobiliario de autor, artesanía y diseño contemporáneo fabricado en Argentina. Transformando espacios en hogares.">
+  <title>Colección Dormitorio | Mueblería Jota</title>
+  <meta name="description" content="Refugios de serenidad y confort. Camas en roble y lino, mesas de noche, bancos y cómodas artesanales.">
 
-  <!-- Google Fonts: Bodoni Moda (Titulares) y Manrope (Cuerpo y detalles) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&family=Poiret+One&display=swap" rel="stylesheet">
 
   <!-- Iconos de Material Symbols -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
-  <!-- Hoja de estilos personalizada -->
+  <!-- Hoja de estilos -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- ========================================================================
-       ENCABEZADO Y NAVEGACIÓN (Header & Navbar)
+       ENCABEZADO Y NAVEGACIÓN
        ======================================================================== -->
-  <header class="header">
+  <header class="header header-opaque">
     <div class="container">
       <nav class="navbar" aria-label="Navegación principal">
         
-        <!-- Logo de Marca -->
-        <a href="index.html" class="brand-link" aria-label="Ir a la página de inicio">
+        <a href="index.html" class="brand-link" aria-label="Ir al inicio">
           <img 
             src="https://lh3.googleusercontent.com/aida/AEtjO1WTLhRJuS_CnS-gHtK_4FyKgYhctLtXoIRizfJAcF080SF03o6_VDdRpAxZb7FBQuKiY2RQc3X1BJPJpnxSsjmDci8KMIkGE5GLPxbgp_qilteseclknKty72y91lgZ-jksBh20JNvkC6rlz_wAUiOGjAUe79z1YbH2F_YNI2su7Nt8lCGzypAhvaTUw-px2XL6GF8ici_YPi5XdB5ytqwI0G1Fh830LWZu6neyEHVZqzbNn_O9SfvjMw" 
             alt="Logo Mueblería Jota" 
@@ -35,15 +34,13 @@
           >
         </a>
 
-        <!-- Enlaces de Navegación -->
         <ul class="nav-menu" id="nav-menu">
-          <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
-          <li><a href="productos.html" class="nav-link">Productos</a></li>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="productos.html" class="nav-link active" aria-current="page">Productos</a></li>
           <li><a href="quienes-somos.html" class="nav-link">Quiénes somos</a></li>
           <li><a href="contacto.html" class="nav-link">Contacto</a></li>
         </ul>
 
-        <!-- Acciones del Usuario (Carrito, Perfil y Menú Móvil) -->
         <div class="nav-actions">
           <button class="action-btn" aria-label="Ver carrito de compras">
             <span class="material-symbols-outlined">shopping_bag</span>
@@ -52,8 +49,6 @@
           <button class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario">
             <span class="material-symbols-outlined">person</span>
           </button>
-
-          <!-- Botón de apertura de menú en pantallas móviles -->
           <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
             <span></span>
             <span></span>
@@ -66,199 +61,143 @@
   </header>
 
   <!-- ========================================================================
-       CONTENIDO PRINCIPAL (Main)
+       CONTENIDO PRINCIPAL - CATEGORÍA DORMITORIO
        ======================================================================== -->
   <main>
 
-    <!-- 1. SECCIÓN HERO (Portada Principal) -->
-    <section class="hero" aria-label="Portada de bienvenida">
-      <div class="hero__bg">
-        <img 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxXyvXKJ4Sx3p7WEHqh4-zgBOFSeBEvHrwLDm5gDEydd0p_fFHMQzhumEDQ9siOqMrFV1ecjIjymETOIQ7tZ8C_KZ-0_9rSAF4uiEdTTJmymm2SaPzwENFMhJNO0NmCmykj9NW1EoQ2xtokZyJJPLZJTiH8lGjla76eqWX1yfjzey2U5r-3iIHWSScQkphV0byoHVy5wdqljSmzIHRqQP_3tajCzgBWmwiM8k0Nz-B8OVO_aldSfc" 
-          alt="Ambiente moderno con muebles artesanales de madera de Mueblería Jota" 
-          class="hero__image"
-        >
-        <div class="hero__overlay"></div>
-      </div>
-
+    <!-- Encabezado y Miga de Pan -->
+    <section class="category-page-header">
       <div class="container">
-        <div class="hero__content">
-          <h1 class="hero__title">MUEBLERÍA JOTA</h1>
-          <p class="hero__subtitle">
-            Diseño contemporáneo con raíces argentinas.<br>
-            Transformando espacios en hogares.
-          </p>
-          <div class="hero__actions">
-            <a href="productos.html" class="btn btn-primary">Ver Productos</a>
-            <a href="#historia" class="btn btn-outline">Nuestra Historia</a>
-          </div>
-        </div>
+        <nav class="category-breadcrumb" aria-label="Miga de pan">
+          <a href="index.html">Inicio</a>
+          <span class="category-breadcrumb-separator">/</span>
+          <a href="productos.html">Colecciones</a>
+          <span class="category-breadcrumb-separator">/</span>
+          <span>Dormitorio</span>
+        </nav>
+        <h1 class="category-page-title">DORMITORIO</h1>
+        <p class="category-page-desc">
+          Ambientes de serenidad y descanso. Camas de autor, textiles naturales y mobiliario pensado para un reposo profundo y reparador.
+        </p>
       </div>
     </section>
 
-    <!-- 2. SECCIÓN PIEZAS DESTACADAS (Colección Esencial) -->
-    <section id="destacados" class="section-featured" aria-labelledby="destacados-title">
+    <!-- Grilla de Productos de Dormitorio -->
+    <section class="category-products-section" aria-label="Catálogo de muebles de dormitorio">
       <div class="container">
-        
-        <!-- Encabezado de Sección -->
-        <header class="section-header">
-          <div>
-            <span class="section-tag">Colección Esencial</span>
-            <h2 id="destacados-title" class="section-title">Piezas Destacadas</h2>
-          </div>
-          <a href="productos.html#catalogo" class="btn-link">
-            Ver Catálogo Completo
-            <span class="material-symbols-outlined">arrow_forward</span>
-          </a>
-        </header>
-
-        <!-- Cuadrícula de Productos -->
         <div class="products-grid">
           
-          <!-- Producto 1: Sofá Tierra con galería al pasar el cursor -->
-          <article class="product-card">
-            <div class="product-card__image-wrapper product-gallery-hover">
-              <img 
-                src="assets/images/sofa-tierra-1.jpg" 
-                alt="Sofá Tierra - Fotografía 1" 
-                class="product-card__image product-gallery-img is-active"
-                loading="lazy"
-              >
-              <img 
-                src="assets/images/sofa-tierra-2.jpg" 
-                alt="Sofá Tierra - Fotografía 2" 
-                class="product-card__image product-gallery-img"
-                loading="lazy"
-              >
-              <img 
-                src="assets/images/sofa-tierra-3.jpg" 
-                alt="Sofá Tierra - Fotografía 3" 
-                class="product-card__image product-gallery-img"
-                loading="lazy"
-              >
-              <button class="product-card__cart-btn" aria-label="Agregar Sofá Tierra al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__row">
-                <h3 class="product-card__name">Sofá Tierra</h3>
-                <span class="product-card__price">$1.250.000</span>
-              </div>
-              <span class="product-card__view-more">Ver más</span>
-            </div>
-          </article>
-
-          <!-- Producto 2: Rack Andes con galería al pasar el cursor -->
-          <article class="product-card">
-            <div class="product-card__image-wrapper product-gallery-hover">
-              <img 
-                src="assets/images/rack-andes-1.jpg" 
-                alt="Rack Andes - Fotografía 1" 
-                class="product-card__image product-gallery-img is-active"
-                loading="lazy"
-              >
-              <img 
-                src="assets/images/rack-andes-2.jpg" 
-                alt="Rack Andes - Fotografía 2" 
-                class="product-card__image product-gallery-img"
-                loading="lazy"
-              >
-              <button class="product-card__cart-btn" aria-label="Agregar Rack Andes al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__row">
-                <h3 class="product-card__name">Rack Andes</h3>
-                <span class="product-card__price">$890.000</span>
-              </div>
-              <span class="product-card__view-more">Ver más</span>
-            </div>
-          </article>
-
-          <!-- Producto 3 -->
+          <!-- Producto 1: Cama Serena -->
           <article class="product-card">
             <div class="product-card__image-wrapper">
               <img 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXwd67D8JM4YicgkKG5R-tCvw2G91Tk8V1g66dZ8oH__x9hc727Cd_W0ZUKd9iCE0F95X8qtTmyceBZFbEv2fpE0vX-KS980hKogAXOWLrrfpzVCMrI5xt4D_IhJGhT2ERx8DUDvDG3Ls1JGFu3BjcRzCv0LnmMpLGLZNXZZYZpT4J1jC0FEOzfJMU0k2eCeYydwzsttUR2_xgr9zpL6jh_gVrW6v5ZbjsU0oftoZqwpihzejK2bU" 
-                alt="Escritorio PRO ergonómico en madera maciza con acabado mate" 
-                class="product-card__image"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh8FBGl134sc2RMz3Gt960TAjqVl1ykosY7H3f-OvL0odoPZiFxdsrzQyGUggAJJE0jw4k4BHrW7eHOx0qFWL-dPoy4mMQquyl3szMm8wpGCpV3k70wgN-0P_eU6VjIDGVQdjcjYYtz3ENy5qMfrmL19WIMDyI1MLqG0GEqxweuQYtjufrMSG2RCLatGzX1x1QR9PprqfS7RJYb3FLIuAYMgaFgwYsJzJ8JNsz9Wm-h4La6OMKQxk" 
+                alt="Cama baja Serena en madera de nogal con cabecero en lino" 
+                class="product-card__image" 
                 loading="lazy"
               >
-              <button class="product-card__cart-btn" aria-label="Agregar Escritorio PRO al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
+              <div class="product-card__actions">
+                <button class="action-circle-btn" aria-label="Ver detalles de Cama Serena">
+                  <span class="material-symbols-outlined">visibility</span>
+                </button>
+                <button class="action-circle-btn action-circle-btn--primary product-card__cart-btn" aria-label="Agregar Cama Serena al carrito">
+                  <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>
+              </div>
             </div>
             <div class="product-card__info">
               <div class="product-card__row">
-                <h3 class="product-card__name">Escritorio PRO</h3>
-                <span class="product-card__price">$650.000</span>
+                <h2 class="product-card__name">Cama Serena</h2>
+                <span class="product-card__price">$780.000</span>
               </div>
+              <p class="product-card__material">Nogal y respaldo tapizado en lino puro</p>
               <span class="product-card__view-more">Ver más</span>
             </div>
           </article>
 
-          <!-- Producto 4 -->
+          <!-- Producto 2: Mesas de Luz Dúo -->
           <article class="product-card">
             <div class="product-card__image-wrapper">
               <img 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUX9dmbRRgsA5fcs13KW7UCTeEarvTl-_JGBn6h2txMDIIifboWKmwhXLKlzo5y-Wkw-AnwPqig2sXRsfpklrTK9YFD4w8T7WwVpmw-Am2sIsY5FKCT2ZkP3Nxr7LfIfSt0fCTmOjpG4sfSqC_T6YcMV-IXBm_Iea7RXan9dzrBvx44KsoMFYQRRlGNvkHa8bBznaR6huvccdHS5WQM5rc5EcUM8vfgbrHFnzxzo9HCqRSVPWXpOA" 
-                alt="Mesa redonda Origen de roble macizo" 
-                class="product-card__image"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLblHmZwWjuSfr71DJs8sgWvSGyk_RS5-SXOpuCglsixW37OY6OLwXObO-i9nIRP5O-yCmP4xpNWTlAtV3pDozuLRFgQKBHDfAXSpqH051EQG8721kIrYa04DNaDQf9656uCyrp5DKfwJhsM0J929n8YnoMgEBbLa1llL3bFrOK2qWw0l-ra_6tVeCdZQE5CYvTJxH9FCxX5n7kUGESahTSqT2GVdXYxNyggrPH41UXL4hg1y0hhI" 
+                alt="Set de 2 mesas de luz flotantes en roble" 
+                class="product-card__image" 
                 loading="lazy"
               >
-              <button class="product-card__cart-btn" aria-label="Agregar Mesa Origen al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
+              <div class="product-card__actions">
+                <button class="action-circle-btn" aria-label="Ver detalles de Mesas de Luz Dúo">
+                  <span class="material-symbols-outlined">visibility</span>
+                </button>
+                <button class="action-circle-btn action-circle-btn--primary product-card__cart-btn" aria-label="Agregar Mesas de Luz Dúo al carrito">
+                  <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>
+              </div>
             </div>
             <div class="product-card__info">
               <div class="product-card__row">
-                <h3 class="product-card__name">Mesa Origen</h3>
-                <span class="product-card__price">$1.100.000</span>
+                <h2 class="product-card__name">Mesas de Luz Dúo</h2>
+                <span class="product-card__price">$260.000</span>
               </div>
+              <p class="product-card__material">Roble claro con cajón oculto</p>
               <span class="product-card__view-more">Ver más</span>
             </div>
           </article>
 
-        </div>
-      </div>
-    </section>
+          <!-- Producto 3: Banco Trenza -->
+          <article class="product-card">
+            <div class="product-card__image-wrapper">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGB7wAWs5gs2pglasTf_EAzHfw8bWRlbCdHt4Auo5xvlXQ0FPiYHU1AFE5VFu929tccdxDzPz0EykXedFNU6Gx_6HZuV2UXYBwopaljKrwytGJB8HZrrUBSkQpSIZpYDTmBZpTFjykNpz1ODd2Tqb7rdSC3IDAAgTqTFlZYfD1Z3656SdG-MKH4vtD6AmHrUa8lLQ0-P34WL6827FdWeTBzaG4o9RjD-dIwpcCvXVL8Tim28l4NtM" 
+                alt="Banco pie de cama Trenza en cuero y petiribí" 
+                class="product-card__image" 
+                loading="lazy"
+              >
+              <div class="product-card__actions">
+                <button class="action-circle-btn" aria-label="Ver detalles de Banco Trenza">
+                  <span class="material-symbols-outlined">visibility</span>
+                </button>
+                <button class="action-circle-btn action-circle-btn--primary product-card__cart-btn" aria-label="Agregar Banco Trenza al carrito">
+                  <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <div class="product-card__row">
+                <h2 class="product-card__name">Banco Trenza</h2>
+                <span class="product-card__price">$180.000</span>
+              </div>
+              <p class="product-card__material">Cuero vacuno trenzado y Petiribí</p>
+              <span class="product-card__view-more">Ver más</span>
+            </div>
+          </article>
 
-    <!-- 3. SECCIÓN NUESTRA FILOSOFÍA / HISTORIA -->
-    <section id="historia" class="section-story" aria-labelledby="historia-title">
-      <div class="container">
-        <div class="story-grid">
-          
-          <!-- Contenido y Relato -->
-          <div class="story-content">
-            <div>
-              <span class="section-tag">Nuestra Filosofía</span>
-              <h2 id="historia-title" class="section-title">Maestría en cada detalle.</h2>
+          <!-- Producto 4: Cómoda Origen -->
+          <article class="product-card">
+            <div class="product-card__image-wrapper">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLploIJ_zbd8ofA44TVtMMtqZb2eZufAKd7dFm1ixJwdg6DuvgGddKZ5JTZulblPCy_lIebM7GKIyU6zGk27OQiC_vg79IeEbZLGTHoLkdsIU9dOhG2hjGPZ8A-kHN-zn7K0JgdtUu-hftG9sWofZV-RftAfwcHQxflp2Wg3SnZrLYqrFaqiRQBcbJj5_eTVgRKs8lYTqAtijgJljfwo4we8X3rQVD4BXV1gwMIi3vZAX7ABJcg90" 
+                alt="Cómoda de dormitorio Origen de 6 cajones" 
+                class="product-card__image" 
+                loading="lazy"
+              >
+              <div class="product-card__actions">
+                <button class="action-circle-btn" aria-label="Ver detalles de Cómoda Origen">
+                  <span class="material-symbols-outlined">visibility</span>
+                </button>
+                <button class="action-circle-btn action-circle-btn--primary product-card__cart-btn" aria-label="Agregar Cómoda Origen al carrito">
+                  <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>
+              </div>
             </div>
-            <p class="story-description">
-              Creemos en el poder transformador del buen diseño. Cada pieza de MUEBLERÍA JOTA nace de la fusión entre la nobleza de los materiales naturales y la precisión del diseño contemporáneo, fabricado con orgullo en Argentina por artesanos expertos.
-            </p>
-            <div>
-              <a href="quienes-somos.html" class="btn btn-primary">
-                Conocé quiénes somos
-                <span class="material-symbols-outlined">east</span>
-              </a>
+            <div class="product-card__info">
+              <div class="product-card__row">
+                <h2 class="product-card__name">Cómoda Origen</h2>
+                <span class="product-card__price">$590.000</span>
+              </div>
+              <p class="product-card__material">6 cajones amplios en madera maciza</p>
+              <span class="product-card__view-more">Ver más</span>
             </div>
-          </div>
-
-          <!-- Imagen con detalle decorativo -->
-          <div class="story-image-box">
-            <img 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5qCdXfD1m20qAOlHRiEmD1nTwPwWqPUA91ivNlntJr97dkiPGrGN4yBSS7lvoQMbypUdchYm0G859u72PPvGlJYd8KN-MUYSBJHnEuPjySfl2S7XRAA_7AQUHZWR33gRlvSndm-dY3kSiUrM1SSBO_B7Rf33WPwd1Qaby05VIuURJgRKO7d3dU4fKEZ71gbEwEYx4z0b0Yn0ezf6bsZMxv6ilQtIjbNNxqaokQ6gnwg8HhdUBM9Q" 
-              alt="Manos de un maestro artesano trabajando la madera de nogal" 
-              class="story-image"
-              loading="lazy"
-            >
-            <div class="story-badge" aria-hidden="true">
-              <span class="material-symbols-outlined" style="font-size: 48px;">handyman</span>
-            </div>
-          </div>
+          </article>
 
         </div>
       </div>
@@ -271,10 +210,8 @@
        ======================================================================== -->
   <footer class="footer">
     <div class="container">
-      
       <div class="footer-grid">
         
-        <!-- Columna Marca -->
         <div class="footer-brand">
           <div class="brand-link">
             <img 
@@ -290,17 +227,16 @@
           <span class="footer-badge">Industria Argentina</span>
         </div>
 
-        <!-- Columna Explorar -->
         <div>
           <h3 class="footer-column-title">Explorar</h3>
           <ul class="footer-links">
             <li><a href="productos.html">Colecciones</a></li>
-            <li><a href="productos.html#catalogo">Catálogo</a></li>
-            <li><a href="#">Cuidados y Madera</a></li>
+            <li><a href="living.html">Living</a></li>
+            <li><a href="comedor.html">Comedor</a></li>
+            <li><a href="dormitorio.html">Dormitorio</a></li>
           </ul>
         </div>
 
-        <!-- Columna Contacto -->
         <div>
           <h3 class="footer-column-title">Contacto</h3>
           <ul class="footer-links footer-contact-list">
@@ -325,7 +261,6 @@
           </ul>
         </div>
 
-        <!-- Columna Redes Sociales -->
         <div>
           <h3 class="footer-column-title">Seguinos</h3>
           <div class="social-links">
@@ -343,7 +278,6 @@
 
       </div>
 
-      <!-- Pie Inferior / Legales -->
       <div class="footer-bottom">
         <span>&copy; 2026 MUEBLERÍA JOTA. TODOS LOS DERECHOS RESERVADOS.</span>
         <div class="footer-legal-links">
@@ -351,11 +285,9 @@
           <a href="#">POLÍTICA DE PRIVACIDAD</a>
         </div>
       </div>
-
     </div>
   </footer>
 
-  <!-- Scripts JavaScript (Vanilla) -->
   <script src="js/main.js"></script>
 </body>
 </html>
