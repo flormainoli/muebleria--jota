@@ -1989,3 +1989,23 @@ button {
   padding-bottom: var(--section-gap);
   background-color: var(--color-surface);
 }
+
+/* Estado de carga mientras se renderizan los productos dinámicos */
+.loading-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  animation: loading-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* Ajuste para que miniaturas escondidas no reserven espacio en el detalle */
+.detail-gallery__thumbs[style*="display: none"] {
+  display: none !important;
+}
