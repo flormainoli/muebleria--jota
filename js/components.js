@@ -22,20 +22,46 @@ class AppHeader extends HTMLElement {
               <li><a href="contacto.html" class="nav-link">Contacto</a></li>
             </ul>
             <div class="nav-actions">
-              <button class="action-btn" aria-label="Ver carrito de compras">
+              <button id="cart-trigger" class="action-btn" type="button" aria-label="Ver carrito de compras" aria-controls="cart-drawer" aria-expanded="false">
                 <span class="material-symbols-outlined">shopping_bag</span>
                 <span class="cart-badge" aria-label="Artículos en el carrito">0</span>
               </button>
-              <button class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario">
+              <button class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario" type="button">
                 <span class="material-symbols-outlined">person</span>
               </button>
-              <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+              <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" type="button">
                 <span></span><span></span><span></span>
               </button>
             </div>
           </nav>
         </div>
       </header>
+
+      <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+      <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+        <div class="cart-drawer__header">
+          <h2>Mi carrito</h2>
+          <button id="cart-close" class="cart-drawer__close" type="button" aria-label="Cerrar carrito">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <div class="cart-drawer__content">
+          <div id="cart-empty" class="cart-empty">Tu carrito está vacío.</div>
+          <div id="cart-items" class="cart-items"></div>
+        </div>
+
+        <div class="cart-drawer__footer">
+          <div class="cart-drawer__summary">
+            <span>Total</span>
+            <strong id="cart-total">$0</strong>
+          </div>
+          <div class="cart-drawer__actions">
+            <button id="cart-clear" class="btn btn-outline cart-drawer__clear" type="button">Vaciar</button>
+            <button id="cart-checkout" class="btn btn-primary" type="button">Finalizar compra</button>
+          </div>
+        </div>
+      </aside>
     `;
 
     // Highlight active link based on current page

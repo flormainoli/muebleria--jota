@@ -1,12 +1,10 @@
-import { showToast } from './toast.js';
+import { initCart, addProductToCart } from './cart.js';
 
 export function initHeaderScroll() {
   const header = document.querySelector('.header') || document.querySelector('app-header');
   if (!header) return;
 
   const handleScroll = () => {
-    // If it's a web component, we might need to get the internal header. 
-    // Since we created it, we can query it.
     const innerHeader = header.querySelector('.header') || header;
     if (window.scrollY > 40) {
       innerHeader.classList.add('is-scrolled');
@@ -60,28 +58,23 @@ export function initMobileMenu() {
   }
 }
 
+function parsePrice(value) {
+  if (!value) return 0;
+  const text = String(value).replace(/[$.]/g, '').replace(/\s/g, '').replace(/\./g, '');
+  return Number.parseInt(text, 10) || 0;
+}
+
 export function initCartFeedback() {
-  const cartButtons = document.querySelectorAll('.product-card__cart-btn');
-  const cartBadge = document.querySelector('.cart-badge');
-
-  if (!cartBadge || cartButtons.length === 0) return;
-
-  let cartCount = parseInt(cartBadge.textContent, 10) || 0;
-
-  cartButtons.forEach((button) => {
+  document.querySelectorAll('.product-card__cart-btn').forEach((button) => {
     button.addEventListener('click', (event) => {
       event.stopPropagation();
-      cartCount++;
-      cartBadge.textContent = cartCount;
-
-      cartBadge.style.transform = 'scale(1.35)';
-      setTimeout(() => {
-        cartBadge.style.transform = 'scale(1)';
-      }, 200);
 
       const card = button.closest('.product-card');
-      const productName = card && card.querySelector('.product-card__name') ? card.querySelector('.product-card__name').textContent : 'el producto';
-      showToast(productName);
+      const name = card?.querySelector('.product-card__name')?.textContent?.trim() || 'Producto';
+      const price = parsePrice(card?.querySelector('.product-card__price')?.textContent || '0');
+      const id = card?.dataset?.id || name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+      addProductToCart({ id, nombre: name, precio: price });
     });
   });
 }
@@ -127,6 +120,7 @@ function initializeApp() {
   ]).then(() => {
     initHeaderScroll();
     initMobileMenu();
+    initCart();
     initCartFeedback();
     initProductGalleryHover();
   });

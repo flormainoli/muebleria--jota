@@ -1,6 +1,6 @@
 import { formatearPrecio, productoPorId, productosPorAmbiente } from './productos.js';
 import { crearProductCard, vincularAccionesProductos } from './product-card.js';
-import { showToast } from './toast.js';
+import { addProductToCart } from './cart.js';
 
 async function initProductoDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -177,20 +177,12 @@ function vincularBotonCarrito(producto) {
   const boton = document.getElementById('detail-add');
   if (!boton) return;
 
-  const badge = document.querySelector('.cart-badge') || document.querySelector('app-header').querySelector('.cart-badge');
-
   boton.addEventListener('click', () => {
-    if (badge) {
-      let contador = parseInt(badge.textContent, 10) || 0;
-      contador++;
-      badge.textContent = contador;
-
-      badge.style.transform = 'scale(1.35)';
-      setTimeout(() => {
-        badge.style.transform = 'scale(1)';
-      }, 200);
-    }
-    
-    showToast(producto.nombre);
+    addProductToCart({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen: producto.imagenes?.[0],
+    });
   });
 }

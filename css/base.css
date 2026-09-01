@@ -13,7 +13,8 @@ html {
   overflow-x: hidden;
 }
 
-body.no-scroll {
+body.no-scroll,
+body.cart-open {
   overflow: hidden;
 }
 

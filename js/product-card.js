@@ -12,7 +12,7 @@
  */
 
 import { formatearPrecio } from './productos.js';
-import { showToast } from './toast.js';
+import { addProductToCart } from './cart.js';
 
 export function crearProductCard(producto) {
   const imagen = producto.imagenes[0];
@@ -126,20 +126,17 @@ export function vincularAccionesProductos(contenedor) {
     // Botones con data-accion="carrito"
     card.querySelectorAll('[data-accion="carrito"]').forEach((boton) => {
       boton.addEventListener('click', (event) => {
-        let badgeEl = badge || document.querySelector('app-header').querySelector('.cart-badge');
-        if (badgeEl) {
-          let contador = parseInt(badgeEl.textContent, 10) || 0;
-          contador++;
-          badgeEl.textContent = contador;
+        event.stopPropagation();
 
-          badgeEl.style.transform = 'scale(1.35)';
-          setTimeout(() => {
-            badgeEl.style.transform = 'scale(1)';
-          }, 200);
-        }
-        
-        const productName = card.querySelector('.product-card__name') ? card.querySelector('.product-card__name').textContent : 'el producto';
-        showToast(productName);
+        const productName = card.querySelector('.product-card__name') ? card.querySelector('.product-card__name').textContent : 'Producto';
+        const priceText = card.querySelector('.product-card__price') ? card.querySelector('.product-card__price').textContent : '0';
+        const parsedPrice = Number(String(priceText).replace(/[$.]/g, '').replace(/\s/g, '').replace(/\./g, '')) || 0;
+
+        addProductToCart({
+          id: String(card.dataset.id || productName.toLowerCase().replace(/[^a-z0-9]+/g, '-')),
+          nombre: productName,
+          precio: parsedPrice,
+        });
       });
     });
   });
