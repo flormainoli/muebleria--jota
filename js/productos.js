@@ -12,7 +12,7 @@
  */
 
 // Array global de productos (accesible desde otros archivos .js)
-const PRODUCTOS = [
+export const PRODUCTOS = [
   /* ========================================================================
      AMBIENTE: LIVING
      ======================================================================== */
@@ -339,7 +339,7 @@ const PRODUCTOS = [
  * @param {string} ambiente - 'living', 'comedor', 'cocina', 'oficina' o 'dormitorio'
  * @returns {Array} productos que coinciden con el ambiente
  */
-function productosPorAmbiente(ambiente) {
+export function productosPorAmbiente(ambiente) {
   return PRODUCTOS.filter((producto) => producto.ambiente === ambiente);
 }
 
@@ -348,7 +348,7 @@ function productosPorAmbiente(ambiente) {
  * @param {string} id - Identificador único del producto
  * @returns {Object|undefined} el producto encontrado o undefined
  */
-function productoPorId(id) {
+export function productoPorId(id) {
   return PRODUCTOS.find((producto) => producto.id === id);
 }
 
@@ -357,6 +357,6 @@ function productoPorId(id) {
  * @param {number} numero - Ej: 450000
  * @returns {string} Ej: "$450.000"
  */
-function formatearPrecio(numero) {
+export function formatearPrecio(numero) {
   return '$' + numero.toLocaleString('es-AR');
 }

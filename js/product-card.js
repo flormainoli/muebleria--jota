@@ -11,12 +11,10 @@
  * ==========================================================================
  */
 
-/**
- * Crea el elemento DOM de una Product Card.
- * @param {Object} producto - Objeto del array de productos
- * @returns {HTMLElement} La tarjeta <article> del producto
- */
-function crearProductCard(producto) {
+import { formatearPrecio } from './productos.js';
+import { showToast } from './toast.js';
+
+export function crearProductCard(producto) {
   const imagen = producto.imagenes[0];
 
   const article = document.createElement('article');
@@ -32,6 +30,8 @@ function crearProductCard(producto) {
   img.alt = producto.nombre;
   img.className = 'product-card__image';
   img.loading = 'lazy';
+  img.width = 400;
+  img.height = 500;
 
   const acciones = document.createElement('div');
   acciones.className = 'product-card__actions';
@@ -109,7 +109,7 @@ function crearProductCard(producto) {
  * de todas las cards dentro de un contenedor.
  * @param {HTMLElement} contenedor - Contenedor que posee las cards
  */
-function vincularAccionesProductos(contenedor) {
+export function vincularAccionesProductos(contenedor) {
   const badge = document.querySelector('.cart-badge');
 
   contenedor.querySelectorAll('.product-card').forEach((card) => {
@@ -126,18 +126,20 @@ function vincularAccionesProductos(contenedor) {
     // Botones con data-accion="carrito"
     card.querySelectorAll('[data-accion="carrito"]').forEach((boton) => {
       boton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        if (!badge) return;
+        let badgeEl = badge || document.querySelector('app-header').querySelector('.cart-badge');
+        if (badgeEl) {
+          let contador = parseInt(badgeEl.textContent, 10) || 0;
+          contador++;
+          badgeEl.textContent = contador;
 
-        // Feedback simple del contador del carrito (sin lógica completa aún)
-        let contador = parseInt(badge.textContent, 10) || 0;
-        contador++;
-        badge.textContent = contador;
-
-        badge.style.transform = 'scale(1.35)';
-        setTimeout(() => {
-          badge.style.transform = 'scale(1)';
-        }, 200);
+          badgeEl.style.transform = 'scale(1.35)';
+          setTimeout(() => {
+            badgeEl.style.transform = 'scale(1)';
+          }, 200);
+        }
+        
+        const productName = card.querySelector('.product-card__name') ? card.querySelector('.product-card__name').textContent : 'el producto';
+        showToast(productName);
       });
     });
   });

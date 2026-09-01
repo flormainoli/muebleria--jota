@@ -1,0 +1,449 @@
+/* --------------------------------------------------------------------------
+   4. HEADER & NAVEGACIÓN
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent;
+  transition: var(--transition-smooth);
+}
+
+/* Header opaco en páginas secundarias o al scrollear */
+.header.header-opaque,
+.header.is-scrolled {
+  background-color: rgba(255, 248, 245, 0.94);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(38, 23, 12, 0.05);
+  border-bottom: 1px solid rgba(210, 196, 188, 0.3);
+}
+
+.navbar {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Marca / Logo */
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+  /* En el header transparente sobre el Hero, el logo se muestra en blanco luminoso */
+  filter: brightness(0) invert(1) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+  transition: var(--transition-smooth);
+}
+
+.header.header-opaque .brand-logo,
+.header.is-scrolled .brand-logo {
+  /* Al hacer scroll o en páginas opacas, cambiamos el logo blanco a oscuro */
+  filter: brightness(0) opacity(0.85); /* Convierte el logo blanco en oscuro (casi negro) */
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  transition: var(--transition-smooth);
+}
+
+.header.header-opaque .brand-text,
+.header.is-scrolled .brand-text {
+  color: var(--color-primary);
+}
+
+/* Enlaces del Menú */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.header.header-opaque .nav-link,
+.header.is-scrolled .nav-link {
+  color: var(--color-text-muted);
+}
+
+.header.header-opaque .nav-link:hover,
+.header.header-opaque .nav-link.active,
+.header.is-scrolled .nav-link:hover,
+.header.is-scrolled .nav-link.active {
+  color: var(--color-primary);
+}
+
+.header.header-opaque .nav-link::after,
+.header.is-scrolled .nav-link::after {
+  background-color: var(--color-primary);
+}
+
+/* Acciones (Carrito, Perfil, Toggle Móvil) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.action-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  transition: var(--transition-smooth);
+}
+
+.header.header-opaque .action-btn,
+.header.is-scrolled .action-btn {
+  color: var(--color-primary);
+}
+
+.action-btn:hover {
+  transform: scale(1.08);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  color: var(--color-primary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header.header-opaque .cart-badge,
+.header.is-scrolled .cart-badge {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.user-avatar-btn {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.header.header-opaque .user-avatar-btn,
+.header.is-scrolled .user-avatar-btn {
+  background-color: var(--color-surface-container);
+}
+
+/* Botón Hamburguesa (Móvil) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+.header.header-opaque .menu-toggle span,
+.header.is-scrolled .menu-toggle span {
+  background-color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   9. FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  background-color: var(--color-surface-container-low);
+  padding-top: 80px;
+  padding-bottom: 40px;
+  border-top: 1px solid rgba(210, 196, 188, 0.4);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(210, 196, 188, 0.4);
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-brand .brand-logo {
+  filter: brightness(0) opacity(0.85);
+  background: transparent;
+  border: none;
+  height: 38px;
+}
+
+.footer-brand .brand-text {
+  color: var(--color-primary);
+}
+
+.footer-description {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 320px;
+}
+
+.footer-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.footer-column-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
+  padding-left: 4px;
+}
+
+/* Lista de Contacto con Íconos */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.contact-link:hover {
+  color: var(--color-primary);
+  transform: translateX(3px);
+}
+
+.contact-icon {
+  font-size: 18px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-link {
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: var(--transition-smooth);
+}
+
+.social-link:hover {
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   10. MENÚ MÓVIL (DRAWER / OVERLAY)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    padding-left: var(--padding-tablet);
+    padding-right: var(--padding-tablet);
+  }
+}
+
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(38, 23, 12, 0.4);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.nav-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: var(--padding-mobile);
+    padding-right: var(--padding-mobile);
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: var(--color-surface);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 100px 32px 32px 32px;
+    gap: 28px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 999;
+  }
+
+  .nav-menu.is-active {
+    right: 0;
+  }
+
+  .nav-link {
+    color: var(--color-primary);
+    font-size: 1rem;
+  }
+
+  .nav-link::after {
+    background-color: var(--color-primary);
+  }
+
+  .menu-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background-color: var(--color-primary);
+  }
+
+  .menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: var(--color-primary);
+  }
+}

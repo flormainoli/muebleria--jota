@@ -21,7 +21,10 @@
  * ==========================================================================
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+import { productosPorAmbiente } from './productos.js';
+import { crearProductCard, vincularAccionesProductos } from './product-card.js';
+
+function initProductosPage() {
   const contenedor = document.getElementById('productos-container');
   if (!contenedor) return;
 
@@ -45,4 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Vinculamos los eventos de cada card recién creada
     vincularAccionesProductos(contenedor);
   }, 600);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initProductosPage);
+} else {
+  initProductosPage();
+}
