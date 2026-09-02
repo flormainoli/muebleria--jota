@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -47,7 +47,7 @@
         <div class="nav-actions">
           <button class="action-btn" aria-label="Ver carrito de compras">
             <span class="material-symbols-outlined">shopping_bag</span>
-            <span class="cart-badge" aria-label="2 artículos en el carrito">2</span>
+            <span class="cart-badge" aria-label="0 artículos en el carrito">0</span>
           </button>
           <button class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario">
             <span class="material-symbols-outlined">person</span>
@@ -88,13 +88,17 @@
 
           <!-- Galería (Izquierda) -->
           <div class="detail-gallery">
-            <div class="detail-gallery__main">
+            <div class="detail-gallery__main" id="detail-main-container" title="Haz clic para ampliar la imagen">
               <img 
                 src="assets/images/sofa-tierra-1.jpg" 
                 alt="Sofá Tierra - Fotografía principal" 
                 class="detail-gallery__main-image" 
                 id="detail-main-image"
               >
+              <div class="detail-gallery__zoom-hint" aria-hidden="true">
+                <span class="material-symbols-outlined">zoom_in</span>
+                <span>Click para ampliar</span>
+              </div>
             </div>
             <div class="detail-gallery__thumbs" id="detail-thumbs">
               <button 
@@ -141,7 +145,14 @@
                 <span class="detail-info__price-value">$1.250.000</span>
                 <span class="detail-info__price-note">Envíos a todo el país. Producción bajo pedido.</span>
               </div>
-              <button class="btn btn-primary detail-info__add" aria-label="Añadir al carrito">
+              <button 
+                class="btn btn-primary detail-info__add" 
+                aria-label="Añadir Sofá Tierra al carrito"
+                data-name="Sofá Tierra"
+                data-price="$1.250.000"
+                data-image="assets/images/sofa-tierra-1.jpg"
+                data-variant="Colección Living · Nogal macizo y bouclé"
+              >
                 Añadir al carrito
                 <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
               </button>
@@ -422,21 +433,6 @@
   </footer>
 
   <!-- Scripts JavaScript (Vanilla) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mainImage = document.getElementById('detail-main-image');
-      const thumbs = document.querySelectorAll('#detail-thumbs .detail-gallery__thumb');
-
-      thumbs.forEach((thumb) => {
-        thumb.addEventListener('click', () => {
-          thumbs.forEach((t) => t.classList.remove('is-active'));
-          thumb.classList.add('is-active');
-          mainImage.src = thumb.getAttribute('data-image');
-          mainImage.alt = thumb.querySelector('img').alt;
-        });
-      });
-    });
-  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
