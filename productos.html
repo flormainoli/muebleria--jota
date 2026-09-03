@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -69,11 +69,40 @@
        CONTENIDO PRINCIPAL - GALERÍA EDITORIAL DE CATEGORÍAS (Masonry Grid)
        ======================================================================== -->
   <main>
+
+    <!-- ====================================================================
+         BARRA DE BÚSQUEDA BRUTALISTA
+         ==================================================================== -->
+    <section class="brutal-search-section" aria-label="Buscar colección">
+      <div class="container">
+        <div class="brutal-search-wrapper">
+          <label class="brutal-search-label" for="brutal-search-input">
+            <span class="material-symbols-outlined">search</span>
+            BUSCAR COLECCIÓN
+          </label>
+          <div class="brutal-search-field">
+            <input
+              type="search"
+              id="brutal-search-input"
+              class="brutal-search-input"
+              placeholder="Ej: Living, Cocina, Dormitorio…"
+              autocomplete="off"
+              aria-label="Buscar por nombre de colección"
+            >
+            <button class="brutal-search-clear" id="brutal-search-clear" aria-label="Limpiar búsqueda" hidden>
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <p class="brutal-search-results" id="brutal-search-results" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
     <section class="category-gallery-section" aria-label="Galería de Colecciones">
-      <div class="category-gallery-grid">
+      <div class="category-gallery-grid" id="category-gallery-grid">
         
         <!-- 1. CATEGORÍA: LIVING (Ancho completo, 80vh) -->
-        <a href="living.html" class="category-gallery-item category-gallery-item--living" aria-label="Ver productos de la colección Living">
+        <a href="living.html" class="category-gallery-item category-gallery-item--living" aria-label="Ver productos de la colección Living" data-name="living">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdygINzb-GQc5y-XjGdDWTJpLl7QDhD57b9800m_Tk2qJaTNOgtnyztfs5OvZHl6kieqRqLgm0KSxeTalWkc2yusDAel85V04Y02CGnZYQMiPq9ulEp2YiRa5GmmMLZ-IGe0n-bli0LxcN_i60NF93-cc9WxpEIvnGRHSoGqX5ihLjaKePeYVlG7gm2AqwgjKLZlZt_YZzPATwaGMEw7u9nkxynO0xC6QPAfpqRolCu9Qtk_Q2qSU');"
@@ -85,7 +114,7 @@
         </a>
 
         <!-- 2. CATEGORÍA: COMEDOR (Mitad de ancho, 70vh) -->
-        <a href="comedor.html" class="category-gallery-item category-gallery-item--comedor" aria-label="Ver productos de la colección Comedor">
+        <a href="comedor.html" class="category-gallery-item category-gallery-item--comedor" aria-label="Ver productos de la colección Comedor" data-name="comedor">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCntkvDqw0P0EQ85R7lwDOVQ1i4nekyB7LnRv6gfXUx2NUkwjn8UzQ8xjjbXmTiroAYXjFsYOYtR7jWfhBONXTHhjPDiz0uKlOZd0tNbIsOcNW2Hiwg_dsXmoIl9KtyiWCftQkISeK9L0BFeTIa_jfanrSyGq5Jm5lmaxpNqJMonupmMICuMfGDxyS0QNFfmIV8MBFUG3BNU2hsU6aqnkfc4QxaeC_89_jYe_3AVlLoiRE9pv_NPI8');"
@@ -97,7 +126,7 @@
         </a>
 
         <!-- 3. CATEGORÍA: COCINA (Mitad de ancho, 70vh) -->
-        <a href="cocina.html" class="category-gallery-item category-gallery-item--cocina" aria-label="Ver productos de la colección Cocina">
+        <a href="cocina.html" class="category-gallery-item category-gallery-item--cocina" aria-label="Ver productos de la colección Cocina" data-name="cocina">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8STHnq0pqKJN3KUreulejPCXdjcPnAUrNmIQIQOyDoXmfYZd3YNhXRW7cs8aUag-926TEG_e0O84zh0Vq749z9-WLG8bdVA4Pth28WeIc-YYBCxDXWd8aHryvbI2sdHgMiyEV22nC0YYgTFdsw05ox0Rt-U2Ri0r5M97dYZAMxyoSGv1zpBzl8tzEb0PaGRkfyK4c83KZbh0MoCQN_q5l-ZpDoKcc-BKuRfwDoudLomRUXjkAUYM');"
@@ -109,7 +138,7 @@
         </a>
 
         <!-- 4. CATEGORÍA: OFICINA (7 columnas, 75vh) -->
-        <a href="oficina.html" class="category-gallery-item category-gallery-item--oficina" aria-label="Ver productos de la colección Oficina">
+        <a href="oficina.html" class="category-gallery-item category-gallery-item--oficina" aria-label="Ver productos de la colección Oficina" data-name="oficina">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzKmxIqR0jDT5SOIC_W0ka-Wja053SaLZ3NGIHwQFLfFoIKxLctLTlEfQrrOisM4VCEWnrfsGNviN1rNavMzFg9VyX_bQfnH1A-B8gSGmHoBFTvCIqPOy2TtESjf2HB3iANXZvtnr2AYBxSWq5QghH6hEXVVo29dj8iXlbi0rbR8aJJZxq8PpHnL_PJ1wjSlDx3MwdjqiuAk9jg5fp8uWBMN6-YkS8P269wrsRZEvdgajrkGmm1IE');"
@@ -121,7 +150,7 @@
         </a>
 
         <!-- 5. CATEGORÍA: DORMITORIO (5 columnas, 75vh) -->
-        <a href="dormitorio.html" class="category-gallery-item category-gallery-item--dormitorio" aria-label="Ver productos de la colección Dormitorio">
+        <a href="dormitorio.html" class="category-gallery-item category-gallery-item--dormitorio" aria-label="Ver productos de la colección Dormitorio" data-name="dormitorio">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDh8FBGl134sc2RMz3Gt960TAjqVl1ykosY7H3f-OvL0odoPZiFxdsrzQyGUggAJJE0jw4k4BHrW7eHOx0qFWL-dPoy4mMQquyl3szMm8wpGCpV3k70wgN-0P_eU6VjIDGVQdjcjYYtz3ENy5qMfrmL19WIMDyI1MLqG0GEqxweuQYtjufrMSG2RCLatGzX1x1QR9PprqfS7RJYb3FLIuAYMgaFgwYsJzJ8JNsz9Wm-h4La6OMKQxk');"
@@ -133,8 +162,104 @@
         </a>
 
       </div>
+
+      <!-- Estado vacío cuando la búsqueda no tiene resultados -->
+      <div class="brutal-empty-state" id="brutal-empty-state" hidden>
+        <span class="material-symbols-outlined">search_off</span>
+        <p>No encontramos esa colección.<br>Intentá con <strong>Living</strong>, <strong>Cocina</strong> u otra.</p>
+        <button class="brutal-empty-clear" id="brutal-empty-clear">LIMPIAR BÚSQUEDA</button>
+      </div>
+
     </section>
+
+    <!-- ====================================================================
+         BANNER DE DESCUENTO — CTA de registro rápido
+         ==================================================================== -->
+    <section class="brutal-promo-banner" aria-label="Registro para descuento">
+      <div class="container">
+        <div class="brutal-promo-inner">
+          <div class="brutal-promo-copy">
+            <span class="brutal-promo-tag">OFERTA EXCLUSIVA</span>
+            <h2 class="brutal-promo-title">—10% EN TU<br>PRIMER PEDIDO</h2>
+            <p class="brutal-promo-desc">Registrate y recibí en tu correo un cupón de descuento para estrenar tu espacio con Mueblería Jota.</p>
+          </div>
+          <button class="brutal-promo-cta" id="brutal-discount-open" type="button">
+            QUIERO MI DESCUENTO
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- ========================================================================
+       MODAL DE REGISTRO RÁPIDO PARA DESCUENTO (Brutalismo Digital)
+       ======================================================================== -->
+  <div class="brutal-modal-overlay" id="brutal-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="brutal-modal-title">
+    <div class="brutal-modal">
+      <button class="brutal-modal__close" id="brutal-modal-close" aria-label="Cerrar">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+
+      <!-- Cabecera del modal -->
+      <div class="brutal-modal__header">
+        <span class="brutal-modal__badge">−10%</span>
+        <h2 class="brutal-modal__title" id="brutal-modal-title">DESCUENTO<br>EXCLUSIVO</h2>
+        <p class="brutal-modal__desc">Completá tus datos y te enviamos el cupón al instante. Sin vueltas.</p>
+      </div>
+
+      <!-- Formulario -->
+      <form class="brutal-modal__form" id="brutal-discount-form" novalidate>
+        <div class="brutal-field-group">
+          <label class="brutal-label" for="discount-name">NOMBRE *</label>
+          <input
+            type="text"
+            id="discount-name"
+            class="brutal-input"
+            placeholder="ej. Florencia Mainoli"
+            autocomplete="name"
+            required
+          >
+          <span class="brutal-field-error" id="error-discount-name"></span>
+        </div>
+
+        <div class="brutal-field-group">
+          <label class="brutal-label" for="discount-email">CORREO ELECTRÓNICO *</label>
+          <input
+            type="email"
+            id="discount-email"
+            class="brutal-input"
+            placeholder="ejemplo@correo.com"
+            autocomplete="email"
+            required
+          >
+          <span class="brutal-field-error" id="error-discount-email"></span>
+        </div>
+
+        <div class="brutal-checkbox-row">
+          <label class="brutal-checkbox-label">
+            <input type="checkbox" id="discount-newsletter" checked>
+            <span>Quiero recibir novedades y colecciones de diseño</span>
+          </label>
+        </div>
+
+        <button type="submit" class="brutal-submit-btn">
+          ENVIAR MI CUPÓN
+          <span class="material-symbols-outlined">local_offer</span>
+        </button>
+      </form>
+
+      <!-- Estado de éxito (oculto por defecto) -->
+      <div class="brutal-modal__success" id="brutal-modal-success" hidden>
+        <span class="material-symbols-outlined brutal-success-icon">check_circle</span>
+        <h3 class="brutal-success-title">¡LISTO!</h3>
+        <p class="brutal-success-desc">Tu cupón fue enviado a <strong id="brutal-success-email"></strong>.<br>Revisá tu bandeja de entrada y empezá a elegir.</p>
+        <button class="brutal-submit-btn" id="brutal-modal-done">CERRAR Y EXPLORAR</button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ========================================================================
        PIE DE PÁGINA (Footer)

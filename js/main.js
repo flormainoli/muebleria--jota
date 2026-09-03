@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductDetailGallery();
   initCatalogFilters();
   initProductGalleryHover();
+  // Nuevas funcionalidades brutalistas (productos.html)
+  initBrutalSearch();
+  initDiscountModal();
 });
 
 /* ==========================================================================
@@ -2030,4 +2033,221 @@ function initProductGalleryHover() {
   });
 }
 
+
+/* ==========================================================================
+   10. BUSCADOR BRUTALISTA DE CATEGORÍAS (productos.html)
+   Filtra en tiempo real las tarjetas de colección por nombre.
+   ========================================================================== */
+function initBrutalSearch() {
+  const searchInput = document.getElementById('brutal-search-input');
+  const clearBtn    = document.getElementById('brutal-search-clear');
+  const resultsEl   = document.getElementById('brutal-search-results');
+  const emptyState  = document.getElementById('brutal-empty-state');
+  const emptyClear  = document.getElementById('brutal-empty-clear');
+  const cards       = document.querySelectorAll('#category-gallery-grid .category-gallery-item');
+
+  if (!searchInput || cards.length === 0) return;
+
+  function applySearch(query) {
+    const q = query.trim().toLowerCase();
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const name = (card.getAttribute('data-name') || '').toLowerCase();
+      const caption = (card.querySelector('.category-gallery-item__title')?.textContent || '').toLowerCase();
+
+      const matches = q === '' || name.includes(q) || caption.includes(q);
+      card.style.display = matches ? '' : 'none';
+      if (matches) visible++;
+    });
+
+    // Botón limpiar
+    if (clearBtn) clearBtn.hidden = q === '';
+
+    // Contador de resultados
+    if (resultsEl) {
+      if (q === '') {
+        resultsEl.textContent = '';
+      } else {
+        resultsEl.textContent = visible === 0
+          ? 'Sin resultados'
+          : `${visible} colección${visible === 1 ? '' : 'es'} encontrada${visible === 1 ? '' : 's'}`;
+      }
+    }
+
+    // Estado vacío
+    if (emptyState) {
+      emptyState.hidden = visible > 0 || q === '';
+    }
+  }
+
+  searchInput.addEventListener('input', (e) => applySearch(e.target.value));
+
+  // Botón ×: limpiar campo y restaurar todas las tarjetas
+  clearBtn?.addEventListener('click', () => {
+    searchInput.value = '';
+    applySearch('');
+    searchInput.focus();
+  });
+
+  // Botón del estado vacío: también limpia
+  emptyClear?.addEventListener('click', () => {
+    searchInput.value = '';
+    applySearch('');
+    searchInput.focus();
+  });
+
+  // Acceso rápido con Escape
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      applySearch('');
+    }
+  });
+}
+
+/* ==========================================================================
+   11. MODAL DE REGISTRO RÁPIDO PARA DESCUENTO (productos.html)
+   Valida campos, guarda en localStorage y muestra pantalla de éxito.
+   ========================================================================== */
+const DISCOUNT_STORAGE_KEY = 'muebleria_jota_discount_lead_v1';
+
+function initDiscountModal() {
+  const openBtn    = document.getElementById('brutal-discount-open');
+  const overlay    = document.getElementById('brutal-modal-overlay');
+  const closeBtn   = document.getElementById('brutal-modal-close');
+  const form       = document.getElementById('brutal-discount-form');
+  const successEl  = document.getElementById('brutal-modal-success');
+  const doneBtn    = document.getElementById('brutal-modal-done');
+
+  if (!overlay || !openBtn) return;
+
+  // ------------------------------------------------------------------
+  // Apertura: si el usuario ya se registró, mostramos confirmación
+  // ------------------------------------------------------------------
+  function openModal() {
+    const existing = getDiscountLead();
+    if (existing && form && successEl) {
+      form.hidden = true;
+      successEl.hidden = false;
+      const emailDisplay = document.getElementById('brutal-success-email');
+      if (emailDisplay) emailDisplay.textContent = existing.email;
+    } else if (form && successEl) {
+      form.hidden = false;
+      successEl.hidden = true;
+    }
+
+    overlay.classList.add('is-active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // Focus al primer campo
+    setTimeout(() => {
+      const firstInput = overlay.querySelector('.brutal-input');
+      if (firstInput && !firstInput.closest('[hidden]')) firstInput.focus();
+    }, 230);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  doneBtn?.addEventListener('click', closeModal);
+
+  // Cierre al hacer clic en el overlay (fuera del modal)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Cierre con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-active')) closeModal();
+  });
+
+  // ------------------------------------------------------------------
+  // Envío del formulario
+  // ------------------------------------------------------------------
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput  = document.getElementById('discount-name');
+    const emailInput = document.getElementById('discount-email');
+    const nameError  = document.getElementById('error-discount-name');
+    const emailError = document.getElementById('error-discount-email');
+
+    let isValid = true;
+
+    // Limpiar errores previos
+    [nameInput, emailInput].forEach((el) => el?.classList.remove('has-error'));
+    if (nameError)  nameError.textContent  = '';
+    if (emailError) emailError.textContent = '';
+
+    // Validar Nombre
+    const name = nameInput?.value.trim();
+    if (!name) {
+      nameInput?.classList.add('has-error');
+      if (nameError) nameError.textContent = 'El nombre es obligatorio.';
+      nameInput?.focus();
+      isValid = false;
+    }
+
+    // Validar Email
+    const email = emailInput?.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      emailInput?.classList.add('has-error');
+      if (emailError) emailError.textContent = 'El correo es obligatorio.';
+      if (isValid) emailInput?.focus();
+      isValid = false;
+    } else if (!emailRegex.test(email)) {
+      emailInput?.classList.add('has-error');
+      if (emailError) emailError.textContent = 'Ingresá un correo válido.';
+      if (isValid) emailInput?.focus();
+      isValid = false;
+    }
+
+    if (!isValid) return;
+
+    // Guardar en localStorage
+    const lead = {
+      name,
+      email,
+      newsletter: document.getElementById('discount-newsletter')?.checked ?? true,
+      registeredAt: new Date().toISOString()
+    };
+    saveDiscountLead(lead);
+
+    // Mostrar pantalla de éxito
+    form.hidden = true;
+    if (successEl) {
+      successEl.hidden = false;
+      const emailDisplay = document.getElementById('brutal-success-email');
+      if (emailDisplay) emailDisplay.textContent = email;
+    }
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Helpers de almacenamiento para el lead de descuento
+// ---------------------------------------------------------------------------
+function getDiscountLead() {
+  try {
+    const raw = localStorage.getItem(DISCOUNT_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveDiscountLead(lead) {
+  try {
+    localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(lead));
+  } catch (e) {
+    console.error('Error guardando lead de descuento:', e);
+  }
+}
 
