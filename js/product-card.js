@@ -17,21 +17,35 @@
  * @returns {HTMLElement} La tarjeta <article> del producto
  */
 function crearProductCard(producto) {
-  const imagen = producto.imagenes[0];
-
   const article = document.createElement('article');
   article.className = 'product-card';
   article.dataset.id = producto.id;
 
+  const tieneGaleria = producto.imagenes.length > 1;
+
   // Contenedor de imagen con botones de acción superpuestos
   const wrapper = document.createElement('div');
-  wrapper.className = 'product-card__image-wrapper';
+  wrapper.className = tieneGaleria
+    ? 'product-card__image-wrapper product-gallery-hover'
+    : 'product-card__image-wrapper';
 
-  const img = document.createElement('img');
-  img.src = imagen;
-  img.alt = producto.nombre;
-  img.className = 'product-card__image';
-  img.loading = 'lazy';
+  if (tieneGaleria) {
+    producto.imagenes.forEach((src, i) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = producto.nombre + ' - Fotografía ' + (i + 1);
+      img.className = 'product-card__image product-gallery-img' + (i === 0 ? ' is-active' : '');
+      img.loading = 'lazy';
+      wrapper.appendChild(img);
+    });
+  } else {
+    const img = document.createElement('img');
+    img.src = producto.imagenes[0];
+    img.alt = producto.nombre;
+    img.className = 'product-card__image';
+    img.loading = 'lazy';
+    wrapper.appendChild(img);
+  }
 
   const acciones = document.createElement('div');
   acciones.className = 'product-card__actions';
@@ -63,7 +77,6 @@ function crearProductCard(producto) {
   acciones.appendChild(botonVerMas);
   acciones.appendChild(botonCarrito);
 
-  wrapper.appendChild(img);
   wrapper.appendChild(acciones);
 
   // Información del producto

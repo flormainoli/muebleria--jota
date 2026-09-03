@@ -8,20 +8,29 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Paleta de Colores (Inspirada en maderas nobles y diseño argentino) */
-  --color-primary: #26170c;             /* Nogal profundo / Tono principal */
-  --color-primary-container: #3d2b1f;   /* Nogal medio para hovers y contenedores */
-  --color-on-primary: #ffffff;          /* Blanco sobre tonos oscuros */
+  --color-primary: #26170c;
+  /* Nogal profundo / Tono principal */
+  --color-primary-container: #3d2b1f;
+  /* Nogal medio para hovers y contenedores */
+  --color-on-primary: #ffffff;
+  /* Blanco sobre tonos oscuros */
 
-  --color-surface: #fff8f5;             /* Crema cálido (fondo general) */
-  --color-surface-container: #f3ecea;   /* Contenedor neutro claro */
+  --color-surface: #fff8f5;
+  /* Crema cálido (fondo general) */
+  --color-surface-container: #f3ecea;
+  /* Contenedor neutro claro */
   --color-surface-container-low: #f9f2f0;
   --color-surface-container-highest: #e8e1df;
 
-  --color-text-main: #1d1b1a;           /* Texto oscuro principal */
-  --color-text-muted: #4f453f;          /* Texto secundario y descriptivo */
+  --color-text-main: #1d1b1a;
+  /* Texto oscuro principal */
+  --color-text-muted: #4f453f;
+  /* Texto secundario y descriptivo */
 
-  --color-outline: #81756e;             /* Bordes y líneas divisorias */
-  --color-outline-variant: #d2c4bc;     /* Bordes sutiles */
+  --color-outline: #81756e;
+  /* Bordes y líneas divisorias */
+  --color-outline-variant: #d2c4bc;
+  /* Bordes sutiles */
 
   /* Tipografías */
   --font-display: 'Bodoni Moda', Georgia, serif;
@@ -53,7 +62,9 @@
 /* --------------------------------------------------------------------------
    2. RESET & ESTILOS BASE
    -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -201,7 +212,7 @@ button {
 }
 
 .brand-logo {
-  height: 40px;
+  height: 130px;
   width: auto;
   object-fit: contain;
   background: transparent;
@@ -403,11 +414,9 @@ button {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(38, 23, 12, 0.45) 0%,
-    rgba(38, 23, 12, 0.65) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(38, 23, 12, 0.45) 0%,
+      rgba(38, 23, 12, 0.65) 100%);
   z-index: 2;
 }
 
@@ -746,18 +755,22 @@ button {
     grid-column: span 12;
     height: 80vh;
   }
+
   .category-gallery-item--comedor {
     grid-column: span 6;
     height: 70vh;
   }
+
   .category-gallery-item--cocina {
     grid-column: span 6;
     height: 70vh;
   }
+
   .category-gallery-item--oficina {
     grid-column: span 7;
     height: 75vh;
   }
+
   .category-gallery-item--dormitorio {
     grid-column: span 5;
     height: 75vh;
@@ -772,6 +785,26 @@ button {
   background-size: cover;
   background-position: center;
   transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.category-gallery-item--living .category-gallery-item__bg {
+  background-image: url("../assets/images/living.jpg");
+}
+
+.category-gallery-item--comedor .category-gallery-item__bg {
+  background-image: url("../assets/images/comedor.jpg");
+}
+
+.category-gallery-item--cocina .category-gallery-item__bg {
+  background-image: url("../assets/images/cocina.jpg");
+}
+
+.category-gallery-item--oficina .category-gallery-item__bg {
+  background-image: url("../assets/images/oficina.jpg");
+}
+
+.category-gallery-item--dormitorio .category-gallery-item__bg {
+  background-image: url("../assets/images/dormitorio.jpg");
 }
 
 .category-gallery-item:hover .category-gallery-item__bg,
@@ -1154,7 +1187,7 @@ button {
   text-align: center;
 }
 
-.section-header--center > div {
+.section-header--center>div {
   margin-left: auto;
   margin-right: auto;
 }
@@ -1201,11 +1234,9 @@ button {
 .about-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(38, 23, 12, 0.35) 0%,
-    rgba(38, 23, 12, 0.6) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(38, 23, 12, 0.35) 0%,
+      rgba(38, 23, 12, 0.6) 100%);
   z-index: 2;
 }
 
@@ -2001,8 +2032,15 @@ button {
 }
 
 @keyframes loading-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
 }
 
 /* Ajuste para que miniaturas escondidas no reserven espacio en el detalle */

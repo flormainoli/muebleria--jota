@@ -44,5 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Vinculamos los eventos de cada card recién creada
     vincularAccionesProductos(contenedor);
+
+    // Re-inicializamos la galería hover para las cards dinámicas
+    initProductGalleryHover();
   }, 600);
 });
