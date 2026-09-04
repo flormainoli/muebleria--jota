@@ -15,7 +15,7 @@
   padding: 4px;
 }
 
-/* --bp-md: 768px */ @media (min-width: 768px) {
+@media (min-width: 768px) {
   .category-gallery-grid {
     grid-template-columns: repeat(12, 1fr);
   }
@@ -31,7 +31,7 @@
   transition: var(--transition-smooth);
 }
 
-/* --bp-md: 768px */ @media (min-width: 768px) {
+@media (min-width: 768px) {
   .category-gallery-item--living {
     grid-column: span 12;
     height: 80vh;
@@ -64,11 +64,9 @@
   transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@media (hover: hover) {
-  .category-gallery-item:hover .category-gallery-item__bg,
-  .category-gallery-item:focus .category-gallery-item__bg {
-    transform: scale(1.05);
-  }
+.category-gallery-item:hover .category-gallery-item__bg,
+.category-gallery-item:focus .category-gallery-item__bg {
+  transform: scale(1.05);
 }
 
 .category-gallery-item__overlay {
@@ -78,11 +76,9 @@
   transition: background-color 1.5s ease-out;
 }
 
-@media (hover: hover) {
-  .category-gallery-item:hover .category-gallery-item__overlay,
-  .category-gallery-item:focus .category-gallery-item__overlay {
-    background-color: rgba(38, 23, 12, 0.3);
-  }
+.category-gallery-item:hover .category-gallery-item__overlay,
+.category-gallery-item:focus .category-gallery-item__overlay {
+  background-color: rgba(38, 23, 12, 0.3);
 }
 
 .category-gallery-item__caption {
@@ -106,14 +102,6 @@
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-@media (hover: hover) {
-  .category-gallery-item:hover .category-gallery-item__title,
-  .category-gallery-item:focus .category-gallery-item__title {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -176,8 +164,11 @@
 /* Botones de acción rápida superpuestos en la tarjeta */
 .product-card__actions {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(38, 23, 12, 0.45) 0%, transparent 100%);
   opacity: 0;
   transform: translateY(8px);
   transition: var(--transition-smooth);
@@ -190,13 +181,6 @@
 .product-card:hover .product-card__actions {
   opacity: 1;
   transform: translateY(0);
-}
-
-@media (hover: none), (max-width: 1024px) {
-  .product-card__actions {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .action-circle-btn {
