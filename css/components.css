@@ -795,6 +795,43 @@
   color: var(--color-primary);
 }
 
+/* --bp-xs: 480px */ @media (max-width: 480px) {
+  .cart-drawer__header,
+  .cart-drawer__shipping-banner,
+  .cart-drawer__body,
+  .cart-drawer__footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cart-item__details {
+    min-width: 0;
+  }
+
+  .cart-item__thumb {
+    width: 64px;
+    height: 76px;
+  }
+
+  .cart-item__name {
+    overflow-wrap: anywhere;
+  }
+
+  .cart-item__top {
+    gap: 4px;
+  }
+
+  .cart-item__bottom {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cart-drawer__checkout-btn {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
 /* ==========================================================================
    17. NOTIFICACIÓN FLOTANTE (Toast Feedback)
    ========================================================================== */
