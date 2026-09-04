@@ -1,53 +1,54 @@
-/**
+﻿/**
  * ==========================================================================
  * MUEBLERÍA JOTA - LÓGICA DE LAS PÁGINAS DE AMBIENTE
  * ==========================================================================
  * Renderiza dinámicamente las Product Cards de las páginas de ambiente
- * (Living, Comedor, Cocina, Oficina y Dormitorio) a partir del array
- * `PRODUCTOS` definido en `js/productos.js`.
- *
- * Cada página de ambiente contiene solamente un contenedor vacío:
- *
- *   <div class="products-grid" id="productos-container" data-ambiente="living">
- *     <p class="loading-products">Cargando productos...</p>
- *   </div>
- *
- * Este archivo:
- *   1. Lee el ambiente desde el atributo `data-ambiente`.
- *   2. Filtra los productos que pertenecen a ese ambiente.
- *   3. Simula una carga asíncrona (setTimeout).
- *   4. Renderiza las cards mediante DOM (crearProductCard de js/product-card.js).
- *   5. Vincula los eventos de "Ver más" y "Añadir al carrito".
+ * a partir del array `PRODUCTOS` definido en `js/productos.js`.
  * ==========================================================================
  */
 
 import { productosPorAmbiente } from './productos.js';
 import { crearProductCard, vincularAccionesProductos } from './product-card.js';
 
+const METADATA = {
+  living: { titulo: 'Living', descripcion: 'Sofás, sillones y mesas de centro para tu sala de estar.' },
+  comedor: { titulo: 'Comedor', descripcion: 'Mesas, sillas y aparadores para el corazón del hogar.' },
+  cocina: { titulo: 'Cocina', descripcion: 'Muebles funcionales y estéticos para tu cocina.' },
+  dormitorio: { titulo: 'Dormitorio', descripcion: 'Camas, cómodas y placards para tu descanso.' },
+  oficina: { titulo: 'Oficina', descripcion: 'Escritorios y bibliotecas para tu espacio de trabajo.' }
+};
+
 function initProductosPage() {
   const contenedor = document.getElementById('productos-container');
   if (!contenedor) return;
 
-  const ambiente = contenedor.getAttribute('data-ambiente');
-  if (!ambiente) return;
+  const urlParams = new URLSearchParams(window.location.search);
+  const ambiente = urlParams.get('ambiente');
+  
+  if (!ambiente || !METADATA[ambiente]) {
+    contenedor.innerHTML = '<p class="loading-products">Categoría no encontrada.</p>';
+    return;
+  }
 
-  // Obtenemos los productos del ambiente (provenientes de js/productos.js)
+  const meta = METADATA[ambiente];
+  const breadcrumb = document.getElementById('breadcrumb-current');
+  const title = document.getElementById('category-title');
+  const desc = document.getElementById('category-desc');
+  
+  if (breadcrumb) breadcrumb.textContent = meta.titulo;
+  if (title) title.textContent = meta.titulo.toUpperCase();
+  if (desc) desc.textContent = meta.descripcion;
+  
+  document.title = `Colección ${meta.titulo} | Mueblería Jota`;
+
   const productos = productosPorAmbiente(ambiente);
 
-  // Mostramos el estado inicial "Cargando productos..."
-  contenedor.innerHTML = '<p class="loading-products">Cargando productos...</p>';
+  contenedor.innerHTML = '';
+  productos.forEach((producto) => {
+    contenedor.appendChild(crearProductCard(producto));
+  });
 
-  // Carga asíncrona con espera breve (setTimeout) para simular petición
-  setTimeout(() => {
-    // Construimos y renderizamos las cards
-    contenedor.innerHTML = '';
-    productos.forEach((producto) => {
-      contenedor.appendChild(crearProductCard(producto));
-    });
-
-    // Vinculamos los eventos de cada card recién creada
-    vincularAccionesProductos(contenedor);
-  }, 600);
+  vincularAccionesProductos(contenedor);
 }
 
 if (document.readyState === 'loading') {

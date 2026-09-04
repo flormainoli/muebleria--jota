@@ -19,8 +19,13 @@
   <!-- Iconos de Material Symbols -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
-  <!-- Hoja de estilos personalizada -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Hojas de estilos individuales -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/category.css">
   <!-- Web Components and Modules -->
   <script src="js/components.js" type="module"></script>
 </head>
@@ -36,7 +41,7 @@
       <div class="category-gallery-grid">
         
         <!-- 1. CATEGORÍA: LIVING (Ancho completo, 80vh) -->
-        <a href="living.html" class="category-gallery-item category-gallery-item--living" aria-label="Ver productos de la colección Living">
+        <a href="categoria.html?ambiente=living" class="category-gallery-item category-gallery-item--living" aria-label="Ver productos de la colección Living">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdygINzb-GQc5y-XjGdDWTJpLl7QDhD57b9800m_Tk2qJaTNOgtnyztfs5OvZHl6kieqRqLgm0KSxeTalWkc2yusDAel85V04Y02CGnZYQMiPq9ulEp2YiRa5GmmMLZ-IGe0n-bli0LxcN_i60NF93-cc9WxpEIvnGRHSoGqX5ihLjaKePeYVlG7gm2AqwgjKLZlZt_YZzPATwaGMEw7u9nkxynO0xC6QPAfpqRolCu9Qtk_Q2qSU');"
@@ -48,7 +53,7 @@
         </a>
 
         <!-- 2. CATEGORÍA: COMEDOR (Mitad de ancho, 70vh) -->
-        <a href="comedor.html" class="category-gallery-item category-gallery-item--comedor" aria-label="Ver productos de la colección Comedor">
+        <a href="categoria.html?ambiente=comedor" class="category-gallery-item category-gallery-item--comedor" aria-label="Ver productos de la colección Comedor">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCntkvDqw0P0EQ85R7lwDOVQ1i4nekyB7LnRv6gfXUx2NUkwjn8UzQ8xjjbXmTiroAYXjFsYOYtR7jWfhBONXTHhjPDiz0uKlOZd0tNbIsOcNW2Hiwg_dsXmoIl9KtyiWCftQkISeK9L0BFeTIa_jfanrSyGq5Jm5lmaxpNqJMonupmMICuMfGDxyS0QNFfmIV8MBFUG3BNU2hsU6aqnkfc4QxaeC_89_jYe_3AVlLoiRE9pv_NPI8');"
@@ -60,7 +65,7 @@
         </a>
 
         <!-- 3. CATEGORÍA: COCINA (Mitad de ancho, 70vh) -->
-        <a href="cocina.html" class="category-gallery-item category-gallery-item--cocina" aria-label="Ver productos de la colección Cocina">
+        <a href="categoria.html?ambiente=cocina" class="category-gallery-item category-gallery-item--cocina" aria-label="Ver productos de la colección Cocina">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8STHnq0pqKJN3KUreulejPCXdjcPnAUrNmIQIQOyDoXmfYZd3YNhXRW7cs8aUag-926TEG_e0O84zh0Vq749z9-WLG8bdVA4Pth28WeIc-YYBCxDXWd8aHryvbI2sdHgMiyEV22nC0YYgTFdsw05ox0Rt-U2Ri0r5M97dYZAMxyoSGv1zpBzl8tzEb0PaGRkfyK4c83KZbh0MoCQN_q5l-ZpDoKcc-BKuRfwDoudLomRUXjkAUYM');"
@@ -72,7 +77,7 @@
         </a>
 
         <!-- 4. CATEGORÍA: OFICINA (7 columnas, 75vh) -->
-        <a href="oficina.html" class="category-gallery-item category-gallery-item--oficina" aria-label="Ver productos de la colección Oficina">
+        <a href="categoria.html?ambiente=oficina" class="category-gallery-item category-gallery-item--oficina" aria-label="Ver productos de la colección Oficina">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzKmxIqR0jDT5SOIC_W0ka-Wja053SaLZ3NGIHwQFLfFoIKxLctLTlEfQrrOisM4VCEWnrfsGNviN1rNavMzFg9VyX_bQfnH1A-B8gSGmHoBFTvCIqPOy2TtESjf2HB3iANXZvtnr2AYBxSWq5QghH6hEXVVo29dj8iXlbi0rbR8aJJZxq8PpHnL_PJ1wjSlDx3MwdjqiuAk9jg5fp8uWBMN6-YkS8P269wrsRZEvdgajrkGmm1IE');"
@@ -84,7 +89,7 @@
         </a>
 
         <!-- 5. CATEGORÍA: DORMITORIO (5 columnas, 75vh) -->
-        <a href="dormitorio.html" class="category-gallery-item category-gallery-item--dormitorio" aria-label="Ver productos de la colección Dormitorio">
+        <a href="categoria.html?ambiente=dormitorio" class="category-gallery-item category-gallery-item--dormitorio" aria-label="Ver productos de la colección Dormitorio">
           <div 
             class="category-gallery-item__bg" 
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDh8FBGl134sc2RMz3Gt960TAjqVl1ykosY7H3f-OvL0odoPZiFxdsrzQyGUggAJJE0jw4k4BHrW7eHOx0qFWL-dPoy4mMQquyl3szMm8wpGCpV3k70wgN-0P_eU6VjIDGVQdjcjYYtz3ENy5qMfrmL19WIMDyI1MLqG0GEqxweuQYtjufrMSG2RCLatGzX1x1QR9PprqfS7RJYb3FLIuAYMgaFgwYsJzJ8JNsz9Wm-h4La6OMKQxk');"

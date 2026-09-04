@@ -18,6 +18,7 @@ export const PRODUCTOS = [
      ======================================================================== */
   {
     id: 'rack-noel',
+    destacado: true,
     nombre: 'Rack Nöel',
     precio: 450000,
     ambiente: 'living',
@@ -82,6 +83,7 @@ export const PRODUCTOS = [
      ======================================================================== */
   {
     id: 'mesa-cienfuegos',
+    destacado: true,
     nombre: 'Mesa Cienfuegos',
     precio: 2450000,
     ambiente: 'comedor',
@@ -191,6 +193,7 @@ export const PRODUCTOS = [
   },
   {
     id: 'isla-gourmet',
+    destacado: true,
     nombre: 'Isla Gourmet',
     precio: 920000,
     ambiente: 'cocina',
@@ -210,6 +213,7 @@ export const PRODUCTOS = [
      ======================================================================== */
   {
     id: 'cama-serena',
+    destacado: true,
     nombre: 'Cama Serena',
     precio: 780000,
     ambiente: 'dormitorio',

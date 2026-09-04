@@ -1,10 +1,1 @@
-@import url('variables.css');
-@import url('base.css');
-@import url('components.css');
-@import url('layout.css');
-@import url('home.css');
-@import url('category.css');
-@import url('utilities.css');
-@import url('about.css');
-@import url('contact.css');
-@import url('product.css');
+﻿/* Los estilos se cargan directamente desde el HTML mediante <link> individuales. */
