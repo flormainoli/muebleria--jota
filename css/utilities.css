@@ -1,0 +1,29 @@
+/* --------------------------------------------------------------------------
+   11. COMPLEMENTOS REUTILIZABLES
+   -------------------------------------------------------------------------- */
+.product-card__material {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Encabezado de sección centrado (usado en Quiénes Somos y otros) */
+.section-header--center {
+  align-items: center;
+  text-align: center;
+}
+
+.section-header--center > div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Etiqueta clara para fondos oscuros */
+.section-tag--light {
+  color: #dec1af;
+}
+
+/* Miga de pan alineada a la izquierda */
+.category-breadcrumb--left {
+  justify-content: flex-start;
+}

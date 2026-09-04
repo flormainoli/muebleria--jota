@@ -1,0 +1,313 @@
+/* --------------------------------------------------------------------------
+   5. HERO SECTION (HOME)
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(38, 23, 12, 0.45) 0%,
+    rgba(38, 23, 12, 0.65) 100%
+  );
+  z-index: 2;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: 40px 20px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-surface-container-highest);
+  max-width: 600px;
+  margin: 0 auto 36px auto;
+  line-height: 1.6;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SECCIÓN PIEZAS DESTACADAS (HOME)
+   -------------------------------------------------------------------------- */
+.section-featured {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+  background-color: var(--color-surface);
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+/* --bp-md: 768px */ @media (min-width: 768px) {
+  .section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.section-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--gutter);
+}
+
+/* --bp-sm to --bp-md */ @media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --bp-lg: 1024px */ @media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+/* --bp-lg: 1024px */ @media (min-width: 1024px) {
+  .section-featured .product-card:nth-child(even) {
+    margin-top: 40px;
+  }
+}
+
+.product-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--color-surface-container);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) {
+  .product-card:hover .product-card__image {
+    transform: scale(1.06);
+  }
+}
+
+/* Galería de imágenes alternadas al pasar el cursor (Hover) */
+.product-gallery-hover {
+  position: relative;
+}
+
+.product-gallery-hover .product-gallery-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.product-gallery-hover .product-gallery-img.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: hover) {
+  .product-card:hover .product-gallery-hover .product-gallery-img.is-active {
+    transform: scale(1.06);
+  }
+}
+
+
+.product-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.product-card__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.product-card__price {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.product-card__view-more {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: inline-block;
+  margin-top: 4px;
+}
+
+@media (hover: hover) {
+  .product-card:hover .product-card__view-more {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. SECCIÓN HISTORIA / FILOSOFÍA DE MARCA (HOME)
+   -------------------------------------------------------------------------- */
+.section-story {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+  background-color: var(--color-surface-container-low);
+  border-top: 1px solid rgba(210, 196, 188, 0.4);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* --bp-lg: 1024px */ @media (min-width: 1024px) {
+  .story-grid {
+    grid-template-columns: 5fr 6fr;
+    gap: 64px;
+  }
+}
+
+.story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.story-description {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.story-image-box {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow-md);
+}
+
+.story-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 110px;
+  height: 110px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 1px solid rgba(210, 196, 188, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--color-primary);
+  opacity: 0.85;
+}
+
+/* --bp-md: 768px */ @media (min-width: 768px) {
+  .story-badge {
+    display: flex;
+  }
+}
