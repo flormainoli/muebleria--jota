@@ -1,1 +1,79 @@
-<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=categoria.html?ambiente=cocina"></head><body></body></html>
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colección Cocina | Mueblería Jota</title>
+  <meta name="description" content="Mobiliario a medida para cocinas contemporáneas. Alacenas, barras de encuentro, islas y módulos base.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&family=Poiret+One&display=swap" rel="stylesheet">
+
+  <!-- Iconos de Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- SEO and Open Graph -->
+  <link rel="canonical" href="https://muebleria-j.com.ar/cocina.html">
+  <meta property="og:title" content="Colección Cocina | Mueblería Jota">
+  <meta property="og:description" content="Mobiliario a medida para cocinas contemporáneas. Alacenas, barras de encuentro, islas y módulos base.">
+  <meta property="og:image" content="https://muebleria-j.com.ar/assets/images/og-cocina.jpg">
+  <meta property="og:url" content="https://muebleria-j.com.ar/cocina.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Web Components and Modules -->
+  <script src="js/components.js" type="module"></script>
+</head>
+<body>
+
+  <!-- ========================================================================
+        ENCABEZADO Y NAVEGACIÓN (Modularizado por el equipo)
+        ======================================================================== -->
+  <app-header opaque></app-header>
+
+  <!-- ========================================================================
+        CONTENIDO PRINCIPAL - CATEGORÍA COCINA
+        ======================================================================== -->
+  <main>
+
+    <!-- Encabezado y Miga de Pan -->
+    <section class="category-page-header">
+      <div class="container">
+        <nav class="category-breadcrumb" aria-label="Miga de pan">
+          <a href="index.html">Inicio</a>
+          <span class="category-breadcrumb-separator">/</span>
+          <a href="productos.html">Colecciones</a>
+          <span class="category-breadcrumb-separator">/</span>
+          <span>Cocina</span>
+        </nav>
+        <h1 class="category-page-title">COCINA</h1>
+        <p class="category-page-desc">
+          Arquitectura culinaria y diseño funcional. Soluciones a medida que fusionan maderas nobles con herrajes de última tecnología.
+        </p>
+      </div>
+    </section>
+
+    <!-- Grilla de Productos de Cocina (Dinámica del Main) -->
+    <section class="category-products-section" aria-label="Catálogo de muebles de cocina">
+      <div class="container">
+        <div class="products-grid" id="productos-container" data-ambiente="cocina">
+          <p class="loading-products">Cargando productos...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+        PIE DE PÁGINA (Footer Modularizado)
+        ======================================================================== -->
+  <app-footer></app-footer>
+
+  <!-- Scripts de la arquitectura actual -->
+  <script type="module" src="js/productos-page.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

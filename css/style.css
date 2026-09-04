@@ -1,1 +1,15 @@
-﻿/* Los estilos se cargan directamente desde el HTML mediante <link> individuales. */
+/* ==========================================================================
+   MUEBLERÍA JOTA — HOJA DE ESTILOS PRINCIPAL
+   Importa todos los parciales en orden de dependencia.
+   ========================================================================== */
+
+@import url('variables.css');   /* 1. Custom properties (colores, tipografías, espaciados) */
+@import url('base.css');        /* 2. Reset, estilos base y contenedor */
+@import url('utilities.css');   /* 3. Helpers y complementos reutilizables */
+@import url('components.css');  /* 4. Botones, header, nav, carrito, modales, toast, lightbox */
+@import url('layout.css');      /* 5. Footer, menú móvil, sección brutalista */
+@import url('home.css');        /* 6. Hero, productos destacados, sección historia */
+@import url('category.css');    /* 7. Galería editorial de categorías y páginas individuales */
+@import url('product.css');     /* 8. Detalle de producto, galería, specs, relacionados */
+@import url('about.css');       /* 9. Quiénes somos: hero, narrativa, objetivos, valores */
+@import url('contact.css');     /* 10. Página de contacto: formulario, info, mapa */

@@ -1,1 +1,75 @@
-<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=categoria.html?ambiente=dormitorio"></head><body></body></html>
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colección Dormitorio | Mueblería Jota</title>
+  <meta name="description" content="Refugios de serenidad y confort. Camas en roble y lino, mesas de noche, bancos y cómodas artesanales.">
+  <link rel="canonical" href="dormitorio.html">
+  <meta property="og:title" content="Colección Dormitorio | Mueblería Jota">
+  <meta property="og:description" content="Refugios de serenidad y confort. Camas en roble y lino, mesas de noche, bancos y cómodas artesanales.">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/aida/AEtjO1WTLhRJuS_CnS-gHtK_4FyKgYhctLtXoIRizfJAcF080SF03o6_VDdRpAxZb7FBQuKiY2RQc3X1BJPJpnxSsjmDci8KMIkGE5GLPxbgp_qilteseclknKty72y91lgZ-jksBh20JNvkC6rlz_wAUiOGjAUe79z1YbH2F_YNI2su7Nt8lCGzypAhvaTUw-px2XL6GF8ici_YPi5XdB5ytqwI0G1Fh830LWZu6neyEHVZqzbNn_O9SfvjMw">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&family=Poiret+One&display=swap" rel="stylesheet">
+
+  <!-- Iconos de Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Web Components and Modules -->
+  <script src="js/components.js" type="module"></script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       ENCABEZADO Y NAVEGACIÓN (Modularizado)
+       ======================================================================== -->
+  <app-header opaque></app-header>
+
+  <!-- ========================================================================
+       CONTENIDO PRINCIPAL - CATEGORÍA DORMITORIO
+       ======================================================================== -->
+  <main>
+
+    <!-- Encabezado y Miga de Pan -->
+    <section class="category-page-header">
+      <div class="container">
+        <nav class="category-breadcrumb" aria-label="Miga de pan">
+          <a href="index.html">Inicio</a>
+          <span class="category-breadcrumb-separator">/</span>
+          <a href="productos.html">Colecciones</a>
+          <span class="category-breadcrumb-separator">/</span>
+          <span>Dormitorio</span>
+        </nav>
+        <h1 class="category-page-title">DORMITORIO</h1>
+        <p class="category-page-desc">
+          Ambientes de serenidad y descanso. Camas de autor, textiles naturales y mobiliario pensado para un reposo profundo y reparador.
+        </p>
+      </div>
+    </section>
+
+    <!-- Grilla de Productos de Dormitorio (Carga Dinámica) -->
+    <section class="category-products-section" aria-label="Catálogo de muebles de dormitorio">
+      <div class="container">
+        <div class="products-grid" id="productos-container" data-ambiente="dormitorio">
+          <p class="loading-products">Cargando productos...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       PIE DE PÁGINA (Footer Modularizado)
+       ======================================================================== -->
+  <app-footer></app-footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/productos-page.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
