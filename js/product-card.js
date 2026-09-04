@@ -13,95 +13,40 @@
 
 import { formatearPrecio } from './productos.js';
 import { addProductToCart } from './cart.js';
+import { parsePrice } from './utils.js';
+
+const CARD_TEMPLATE = document.createElement('template');
+CARD_TEMPLATE.innerHTML = `
+  <article class="product-card" data-id="">
+    <div class="product-card__image-wrapper">
+      <img src="" alt="" class="product-card__image" loading="lazy" width="400" height="500">
+    </div>
+    <div class="product-card__info">
+      <div class="product-card__row">
+        <h2 class="product-card__name"></h2>
+        <span class="product-card__price"></span>
+      </div>
+      <p class="product-card__material"></p>
+      <button class="product-card__view-more" type="button" data-accion="ver-mas">Ver más</button>
+    </div>
+  </article>
+`;
 
 export function crearProductCard(producto) {
-  const imagen = producto.imagenes[0];
-
-  const article = document.createElement('article');
-  article.className = 'product-card';
+  const clone = CARD_TEMPLATE.content.cloneNode(true);
+  const article = clone.querySelector('article');
+  
   article.dataset.id = producto.id;
-
-  // Contenedor de imagen con botones de acción superpuestos
-  const wrapper = document.createElement('div');
-  wrapper.className = 'product-card__image-wrapper';
-
-  const img = document.createElement('img');
-  img.src = imagen;
+  
+  const img = clone.querySelector('.product-card__image');
+  img.src = producto.imagenes[0];
   img.alt = producto.nombre;
-  img.className = 'product-card__image';
-  img.loading = 'lazy';
-  img.width = 400;
-  img.height = 500;
+  
+  clone.querySelector('.product-card__name').textContent = producto.nombre;
+  clone.querySelector('.product-card__price').textContent = formatearPrecio(producto.precio);
+  clone.querySelector('.product-card__material').textContent = producto.material;
 
-  const acciones = document.createElement('div');
-  acciones.className = 'product-card__actions';
-
-  // Botón "Ver más" (icono ojo)
-  const botonVerMas = document.createElement('button');
-  botonVerMas.className = 'action-circle-btn';
-  botonVerMas.type = 'button';
-  botonVerMas.setAttribute('aria-label', 'Ver detalles de ' + producto.nombre);
-  botonVerMas.dataset.accion = 'ver-mas';
-
-  const iconoVerMas = document.createElement('span');
-  iconoVerMas.className = 'material-symbols-outlined';
-  iconoVerMas.textContent = 'visibility';
-  botonVerMas.appendChild(iconoVerMas);
-
-  // Botón "Añadir al carrito"
-  const botonCarrito = document.createElement('button');
-  botonCarrito.className = 'action-circle-btn action-circle-btn--primary product-card__cart-btn';
-  botonCarrito.type = 'button';
-  botonCarrito.setAttribute('aria-label', 'Agregar ' + producto.nombre + ' al carrito');
-  botonCarrito.dataset.accion = 'carrito';
-
-  const iconoCarrito = document.createElement('span');
-  iconoCarrito.className = 'material-symbols-outlined';
-  iconoCarrito.textContent = 'add_shopping_cart';
-  botonCarrito.appendChild(iconoCarrito);
-
-  acciones.appendChild(botonVerMas);
-  acciones.appendChild(botonCarrito);
-
-  wrapper.appendChild(img);
-  wrapper.appendChild(acciones);
-
-  // Información del producto
-  const info = document.createElement('div');
-  info.className = 'product-card__info';
-
-  const fila = document.createElement('div');
-  fila.className = 'product-card__row';
-
-  const nombre = document.createElement('h2');
-  nombre.className = 'product-card__name';
-  nombre.textContent = producto.nombre;
-
-  const precio = document.createElement('span');
-  precio.className = 'product-card__price';
-  precio.textContent = formatearPrecio(producto.precio);
-
-  fila.appendChild(nombre);
-  fila.appendChild(precio);
-
-  const material = document.createElement('p');
-  material.className = 'product-card__material';
-  material.textContent = producto.material;
-
-  const verMas = document.createElement('button');
-  verMas.className = 'product-card__view-more';
-  verMas.type = 'button';
-  verMas.textContent = 'Ver más';
-  verMas.dataset.accion = 'ver-mas';
-
-  info.appendChild(fila);
-  info.appendChild(material);
-  info.appendChild(verMas);
-
-  article.appendChild(wrapper);
-  article.appendChild(info);
-
-  return article;
+  return clone.firstElementChild;
 }
 
 /**
@@ -115,27 +60,27 @@ export function vincularAccionesProductos(contenedor) {
   contenedor.querySelectorAll('.product-card').forEach((card) => {
     const productoId = card.dataset.id;
 
-    // Botones con data-accion="ver-mas" (icono y texto)
-    card.querySelectorAll('[data-accion="ver-mas"]').forEach((boton) => {
-      boton.addEventListener('click', () => {
-        // Cada producto se identifica por su id y se navega al detalle
-        window.location.href = 'producto-detalle.html?id=' + productoId;
-      });
+    // Hacer que toda la tarjeta navegue al detalle (el diseño actual la hace clickeable)
+    card.addEventListener('click', () => {
+      window.location.href = 'producto-detalle.html?id=' + productoId;
     });
 
     // Botones con data-accion="carrito"
     card.querySelectorAll('[data-accion="carrito"]').forEach((boton) => {
       boton.addEventListener('click', (event) => {
+        event.preventDefault();
         event.stopPropagation();
 
         const productName = card.querySelector('.product-card__name') ? card.querySelector('.product-card__name').textContent : 'Producto';
         const priceText = card.querySelector('.product-card__price') ? card.querySelector('.product-card__price').textContent : '0';
-        const parsedPrice = Number(String(priceText).replace(/[$.]/g, '').replace(/\s/g, '').replace(/\./g, '')) || 0;
+        const parsedPrice = parsePrice(priceText);
+        const imageSrc = card.querySelector('.product-card__image') ? card.querySelector('.product-card__image').src : '';
 
         addProductToCart({
           id: String(card.dataset.id || productName.toLowerCase().replace(/[^a-z0-9]+/g, '-')),
           nombre: productName,
           precio: parsedPrice,
+          image: imageSrc,
         });
       });
     });

@@ -22,6 +22,7 @@
 
   --color-outline: #81756e;             /* Bordes y líneas divisorias */
   --color-outline-variant: #d2c4bc;     /* Bordes sutiles */
+  --color-focus-ring: rgba(38, 23, 12, 0.4); /* Anillo de enfoque de accesibilidad */
 
   /* Tipografías */
   --font-display: 'Bodoni Moda', Georgia, serif;
@@ -48,4 +49,19 @@
 
   /* Transición estándar */
   --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Z-Index Scale */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-header: 1000;
+  --z-drawer: 1100;
+  --z-modal: 10000;
+  --z-toast: 9999;
+
+  /* Breakpoints (para uso en @media) */
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
 }

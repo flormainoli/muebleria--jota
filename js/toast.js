@@ -1,4 +1,4 @@
-export function showToast(productName) {
+export function showToast(message) {
   let toastContainer = document.getElementById('toast-container');
   if (!toastContainer) {
     toastContainer = document.createElement('div');
@@ -24,7 +24,7 @@ export function showToast(productName) {
   toast.style.opacity = '0';
   toast.style.transform = 'translateY(20px)';
   toast.style.transition = 'all 0.3s ease';
-  toast.textContent = `Se ha añadido ${productName} a tu carrito`;
+  toast.textContent = message;
 
   toastContainer.appendChild(toast);
 

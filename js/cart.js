@@ -1,6 +1,7 @@
-import { showToast } from './toast.js';
-
-const STORAGE_KEY = 'muebleria-jota-cart';
+﻿import { showToast } from './toast.js';
+import { createFocusTrap } from './focus-trap.js';
+import { openCheckoutModal } from './checkout-modal.js';
+import { getCart, persistCart, addItem, updateQuantity, removeItem, clearItems, getTotalItems, getTotal } from './cart-store.js';
 
 export function formatCurrencyARS(value) {
   return new Intl.NumberFormat('es-AR', {
@@ -10,30 +11,14 @@ export function formatCurrencyARS(value) {
   }).format(Number(value) || 0);
 }
 
-export function getCart() {
-  try {
-    const savedCart = localStorage.getItem(STORAGE_KEY);
-    const parsed = savedCart ? JSON.parse(savedCart) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    console.warn('No se pudo leer el carrito guardado:', error);
-    return [];
-  }
-}
-
-function persistCart(cart) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-}
-
-function getCartTotalItems(cart = getCart()) {
-  return cart.reduce((total, item) => total + Number(item.quantity || 1), 0);
-}
+// Re-export getCart, persistCart if needed
+export { getCart, persistCart };
 
 export function updateCartBadge() {
   const badge = document.querySelector('.cart-badge');
   if (!badge) return;
 
-  const quantity = getCartTotalItems();
+  const quantity = getTotalItems();
   badge.textContent = quantity;
   badge.style.transform = 'scale(1.35)';
   window.clearTimeout(badge.dataset.cartPulseTimer);
@@ -43,60 +28,25 @@ export function updateCartBadge() {
 }
 
 export function addProductToCart(product) {
-  if (!product || !product.id) return getCart();
-
-  const cart = getCart();
-  const itemToAdd = {
-    id: String(product.id),
-    name: product.nombre || product.name || 'Producto',
-    price: Number(product.precio || product.price || 0),
-    image: product.imagen || product.image || product.imagenes?.[0] || '',
-    quantity: 1,
-  };
-
-  const existingItem = cart.find((item) => item.id === itemToAdd.id);
-
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push(itemToAdd);
-  }
-
-  persistCart(cart);
-  updateCartBadge();
-  renderCart();
-  showToast(itemToAdd.name);
-
+  const cart = addItem(product);
+  showToast(`Se ha añadido ${product.nombre || product.name || 'Producto'} a tu carrito`);
   return cart;
 }
 
 export function updateCartItemQuantity(productId, quantity) {
-  const cart = getCart();
-  const itemIndex = cart.findIndex((item) => item.id === String(productId));
-
-  if (itemIndex === -1) return;
-
-  if (quantity <= 0) {
-    cart.splice(itemIndex, 1);
-  } else {
-    cart[itemIndex].quantity = quantity;
-  }
-
-  persistCart(cart);
-  updateCartBadge();
-  renderCart();
+  updateQuantity(productId, quantity);
 }
 
 export function removeProductFromCart(productId) {
-  updateCartItemQuantity(productId, 0);
+  removeItem(productId);
 }
 
 export function clearCart() {
-  persistCart([]);
-  updateCartBadge();
-  renderCart();
-  showToast('Tu carrito está vacío');
+  clearItems();
+  showToast('Tu carrito ha sido vaciado');
 }
+
+let cartDrawerTrap = null;
 
 export function openCartDrawer() {
   const drawer = document.getElementById('cart-drawer');
@@ -109,6 +59,7 @@ export function openCartDrawer() {
   const backdrop = document.getElementById('cart-backdrop');
   if (backdrop) backdrop.classList.add('is-visible');
   document.body.classList.add('cart-open');
+  if (cartDrawerTrap) cartDrawerTrap.activate();
 }
 
 export function closeCartDrawer() {
@@ -122,6 +73,7 @@ export function closeCartDrawer() {
   const backdrop = document.getElementById('cart-backdrop');
   if (backdrop) backdrop.classList.remove('is-visible');
   document.body.classList.remove('cart-open');
+  if (cartDrawerTrap) cartDrawerTrap.deactivate();
 }
 
 export function renderCart() {
@@ -145,12 +97,9 @@ export function renderCart() {
   if (emptyState) emptyState.style.display = 'none';
   if (drawer) drawer.classList.remove('is-empty');
 
-  let subtotal = 0;
-
   cart.forEach((item) => {
     const quantity = Number(item.quantity || 1);
     const itemTotal = Number(item.price || 0) * quantity;
-    subtotal += itemTotal;
 
     const row = document.createElement('article');
     row.className = 'cart-item';
@@ -165,7 +114,7 @@ export function renderCart() {
         </div>
         <div class="cart-item__meta">
           <div class="cart-item__qty">
-            <button type="button" class="cart-item__qty-btn" data-cart-action="decrease" data-cart-id="${item.id}" aria-label="Disminuir cantidad">−</button>
+            <button type="button" class="cart-item__qty-btn" data-cart-action="decrease" data-cart-id="${item.id}" aria-label="Disminuir cantidad">-</button>
             <span>${quantity}</span>
             <button type="button" class="cart-item__qty-btn" data-cart-action="increase" data-cart-id="${item.id}" aria-label="Aumentar cantidad">+</button>
           </div>
@@ -177,7 +126,7 @@ export function renderCart() {
     itemsContainer.appendChild(row);
   });
 
-  if (totalElement) totalElement.textContent = formatCurrencyARS(subtotal);
+  if (totalElement) totalElement.textContent = formatCurrencyARS(getTotal());
 }
 
 export function initCart() {
@@ -188,6 +137,8 @@ export function initCart() {
   const closeButton = document.getElementById('cart-close');
   const backdrop = document.getElementById('cart-backdrop');
   const clearButton = document.getElementById('cart-clear');
+  const drawer = document.getElementById('cart-drawer');
+  if (drawer && !cartDrawerTrap) { cartDrawerTrap = createFocusTrap(drawer); }
   const checkoutButton = document.getElementById('cart-checkout');
 
   cartTrigger?.addEventListener('click', () => {
@@ -217,11 +168,7 @@ export function initCart() {
       return;
     }
 
-    showToast('Gracias por tu compra');
-    persistCart([]);
-    updateCartBadge();
-    renderCart();
-    closeCartDrawer();
+    openCheckoutModal();
   });
 
   document.addEventListener('click', (event) => {
@@ -256,6 +203,12 @@ export function initCart() {
     if (event.key === 'Escape') {
       closeCartDrawer();
     }
+  });
+
+  // Listen to store updates
+  document.addEventListener('cart:updated', () => {
+    updateCartBadge();
+    renderCart();
   });
 
   updateCartBadge();

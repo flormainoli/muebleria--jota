@@ -1,4 +1,6 @@
 import { initCart, addProductToCart } from './cart.js';
+import { parsePrice } from './utils.js';
+
 
 export function initHeaderScroll() {
   const header = document.querySelector('.header') || document.querySelector('app-header');
@@ -58,27 +60,6 @@ export function initMobileMenu() {
   }
 }
 
-function parsePrice(value) {
-  if (!value) return 0;
-  const text = String(value).replace(/[$.]/g, '').replace(/\s/g, '').replace(/\./g, '');
-  return Number.parseInt(text, 10) || 0;
-}
-
-export function initCartFeedback() {
-  document.querySelectorAll('.product-card__cart-btn').forEach((button) => {
-    button.addEventListener('click', (event) => {
-      event.stopPropagation();
-
-      const card = button.closest('.product-card');
-      const name = card?.querySelector('.product-card__name')?.textContent?.trim() || 'Producto';
-      const price = parsePrice(card?.querySelector('.product-card__price')?.textContent || '0');
-      const id = card?.dataset?.id || name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-      addProductToCart({ id, nombre: name, precio: price });
-    });
-  });
-}
-
 export function initProductGalleryHover() {
   const galleryContainers = document.querySelectorAll('.product-gallery-hover');
 
@@ -121,7 +102,6 @@ function initializeApp() {
     initHeaderScroll();
     initMobileMenu();
     initCart();
-    initCartFeedback();
     initProductGalleryHover();
   });
 }

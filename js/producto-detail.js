@@ -80,7 +80,7 @@ function renderizarBreadcrumb(producto) {
 
   const etiqueta = etiquetasAmbiente[producto.ambiente] || 'Productos';
   if (ambienteLink) {
-    ambienteLink.href = producto.ambiente + '.html';
+    ambienteLink.href = 'categoria.html?ambiente=' + producto.ambiente;
     ambienteLink.textContent = etiqueta;
   }
   if (nombreCrumb) nombreCrumb.textContent = producto.nombre;

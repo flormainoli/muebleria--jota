@@ -28,16 +28,43 @@
   box-shadow: var(--shadow-md);
 }
 
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
 .btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  backdrop-filter: blur(4px);
+}
+
+.btn-outline:hover {
+  background-color: rgba(38, 23, 12, 0.08); /* slight primary color tint */
+  transform: translateY(-2px);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+  background-color: rgba(38, 23, 12, 0.12);
+}
+
+.btn-outline-light {
   background-color: transparent;
   color: var(--color-on-primary);
   border: 1px solid var(--color-surface-container-highest);
   backdrop-filter: blur(4px);
 }
 
-.btn-outline:hover {
+.btn-outline-light:hover {
   background-color: rgba(255, 248, 245, 0.15);
   transform: translateY(-2px);
+}
+
+.btn-outline-light:active {
+  transform: translateY(0);
+  background-color: rgba(255, 248, 245, 0.25);
 }
 
 .btn-link {

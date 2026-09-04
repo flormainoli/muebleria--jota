@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: var(--z-header);
   background-color: transparent;
   transition: var(--transition-smooth);
 }
@@ -146,7 +146,7 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
-  z-index: 990;
+  z-index: var(--z-sticky);
 }
 
 .cart-drawer-backdrop.is-visible {
@@ -166,7 +166,7 @@
   flex-direction: column;
   transform: translateX(105%);
   transition: transform 0.28s ease;
-  z-index: 1001;
+  z-index: var(--z-drawer);
 }
 
 .cart-drawer.is-open {
@@ -427,7 +427,7 @@ body.cart-open {
   border-bottom: 1px solid rgba(210, 196, 188, 0.4);
 }
 
-@media (min-width: 768px) {
+/* --bp-md: 768px */ @media (min-width: 768px) {
   .footer-grid {
     grid-template-columns: 2fr 1fr 1.5fr 1fr;
   }
@@ -556,7 +556,7 @@ body.cart-open {
   color: var(--color-text-muted);
 }
 
-@media (min-width: 768px) {
+/* --bp-md: 768px */ @media (min-width: 768px) {
   .footer-bottom {
     flex-direction: row;
     justify-content: space-between;
@@ -571,7 +571,7 @@ body.cart-open {
 /* --------------------------------------------------------------------------
    10. MENÚ MÓVIL (DRAWER / OVERLAY)
    -------------------------------------------------------------------------- */
-@media (min-width: 768px) and (max-width: 1024px) {
+/* --bp-md: 768px */ @media (min-width: 768px) and (max-width: 1024px) {
   .container {
     padding-left: var(--padding-tablet);
     padding-right: var(--padding-tablet);
@@ -585,7 +585,7 @@ body.cart-open {
   width: 100vw;
   height: 100vh;
   background-color: rgba(38, 23, 12, 0.4);
-  z-index: 998;
+  z-index: calc(var(--z-header) - 2);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -596,7 +596,7 @@ body.cart-open {
   visibility: visible;
 }
 
-@media (max-width: 767px) {
+/* < --bp-md */ @media (max-width: 767px) {
   .container {
     padding-left: var(--padding-mobile);
     padding-right: var(--padding-mobile);
@@ -616,7 +616,7 @@ body.cart-open {
     gap: 28px;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
     transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 999;
+    z-index: calc(var(--z-drawer) - 1);
   }
 
   .nav-menu.is-active {
@@ -634,7 +634,7 @@ body.cart-open {
 
   .menu-toggle {
     display: flex;
-    z-index: 1001;
+    z-index: var(--z-drawer);
   }
 
   .menu-toggle.is-active span:nth-child(1) {
@@ -651,3 +651,185 @@ body.cart-open {
     background-color: var(--color-primary);
   }
 }
+
+/* --------------------------------------------------------------------------
+   CHECKOUT MODAL
+   -------------------------------------------------------------------------- */
+.checkout-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-modal.is-open {
+  display: flex;
+}
+
+.checkout-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(38, 23, 12, 0.55);
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn 0.25s ease forwards;
+}
+
+.checkout-modal__panel {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-lg, 0 20px 60px rgba(38,23,12,0.2));
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 40px 36px;
+  animation: modalSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+.checkout-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.checkout-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.checkout-modal__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-primary);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.checkout-modal__close:hover {
+  opacity: 1;
+}
+
+.checkout-modal__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-on-surface-variant, #6d5a4e);
+  margin: 0 0 28px;
+}
+
+.checkout-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.checkout-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkout-modal__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.checkout-modal__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--color-outline, #d2c4bc);
+  border-radius: var(--radius-sm, 4px);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  background-color: var(--color-surface);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.checkout-modal__input::placeholder {
+  color: var(--color-on-surface-variant, #9e8a80);
+  opacity: 0.7;
+}
+
+.checkout-modal__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(83, 49, 27, 0.12);
+}
+
+.checkout-modal__input--error {
+  border-color: #b94a48;
+  box-shadow: 0 0 0 3px rgba(185, 74, 72, 0.12);
+}
+
+.checkout-modal__error {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #b94a48;
+  display: none;
+}
+
+.checkout-modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* --bp-sm: 480px */ @media (max-width: 480px) {
+  .checkout-modal__panel {
+    padding: 28px 20px;
+  }
+
+  .checkout-modal__actions {
+    flex-direction: column-reverse;
+  }
+
+  .checkout-modal__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ERRORES INLINE — Formulario de Contacto
+   -------------------------------------------------------------------------- */
+.contact-form__error {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #b94a48;
+  display: none;
+  margin-top: 4px;
+}
+
+.contact-form__input--error {
+  border-color: #b94a48 !important;
+  box-shadow: 0 0 0 3px rgba(185, 74, 72, 0.12);
+}
+
