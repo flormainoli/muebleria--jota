@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run",
-    "lint": "eslint js/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,11 +17,5 @@
   "bugs": {
     "url": "https://github.com/flormainoli/muebleria--jota/issues"
   },
-  "homepage": "https://github.com/flormainoli/muebleria--jota#readme",
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.9.1",
-    "jsdom": "^29.1.1",
-    "vitest": "^5.0.0"
-  }
+  "homepage": "https://github.com/flormainoli/muebleria--jota#readme"
 }

@@ -10,18 +10,6 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: hidden;
-}
-
-body.no-scroll,
-body.cart-open {
-  overflow: hidden;
-}
-
-app-header,
-app-footer {
-  display: block;
-  width: 100%;
 }
 
 body {
@@ -52,16 +40,6 @@ button {
   background: none;
   font-family: inherit;
   transition: var(--transition-smooth);
-}
-
-/* Accesibilidad para navegación por teclado */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--color-focus-ring);
-  outline-offset: 4px;
 }
 
 /* Contenedor centralizado */

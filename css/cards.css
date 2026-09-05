@@ -172,3 +172,33 @@
 .action-circle-btn--primary:hover {
   background-color: var(--color-primary-container);
 }
+
+/* Botón de carrito flotante en tarjetas estáticas (markup manual) */
+.product-card__cart-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition-smooth);
+  z-index: 2;
+}
+
+.product-card:hover .product-card__cart-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card__cart-btn:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -8,12 +8,10 @@
   <meta name="description"
     content="Mobiliario de autor, artesanía y diseño contemporáneo fabricado en Argentina. Transformando espacios en hogares.">
 
-  <!-- Google Fonts: Bodoni Moda (Titulares) y Manrope (Cuerpo y detalles) -->
+  <!-- Google Fonts: Bodoni Moda, Poiret One y Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&family=Poiret+One&display=swap" rel="stylesheet">
 
   <!-- Iconos de Material Symbols -->
   <link rel="stylesheet"
@@ -25,15 +23,11 @@
   <meta property="og:description" content="Mobiliario de autor, artesanía y diseño contemporáneo fabricado en Argentina. Transformando espacios en hogares.">
   <meta property="og:image" content="https://muebleria-j.com.ar/assets/images/og-image.jpg">
   <meta property="og:url" content="https://muebleria-j.com.ar/index.html">
+  <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Hojas de estilos individuales -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/utilities.css">
-  <link rel="stylesheet" href="css/home.css">
+  <!-- Hoja de estilos personalizada -->
+  <link rel="stylesheet" href="css/style.css">
   <!-- Web Components and Modules -->
   <script src="js/components.js" type="module"></script>
   <script src="js/search.js" type="module"></script>
@@ -44,7 +38,7 @@
   <!-- ========================================================================
        ENCABEZADO Y NAVEGACIÓN (Header & Navbar)
        ======================================================================== -->
-  <app-header></app-header>
+  <app-header opaque></app-header>
 
   <!-- ========================================================================
        CONTENIDO PRINCIPAL (Main)
@@ -73,7 +67,7 @@
           </p>
           <div class="hero__actions">
             <a href="productos.html" class="btn btn-primary">Ver Productos</a>
-            <a href="#historia" class="btn btn-outline-light">Nuestra Historia</a>
+            <a href="#historia" class="btn btn-outline">Nuestra Historia</a>
           </div>
         </div>
       </div>
@@ -97,7 +91,127 @@
 
         <!-- Cuadrícula de Productos dinámicos -->
         <div class="products-grid">
-          <p class="loading-products">Cargando destacados...</p>
+          
+          <!-- Producto 1: Sofá Tierra con galería al pasar el cursor -->
+          <article class="product-card">
+            <div class="product-card__image-wrapper product-gallery-hover">
+              <img 
+                src="assets/images/sofa-tierra-1.jpg" 
+                alt="Sofá Tierra - Fotografía 1" 
+                class="product-card__image product-gallery-img is-active"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <img 
+                src="assets/images/sofa-tierra-2.jpg" 
+                alt="Sofá Tierra - Fotografía 2" 
+                class="product-card__image product-gallery-img"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <img 
+                src="assets/images/sofa-tierra-3.jpg" 
+                alt="Sofá Tierra - Fotografía 3" 
+                class="product-card__image product-gallery-img"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <button class="product-card__cart-btn" aria-label="Agregar Sofá Tierra al carrito">
+                <span class="material-symbols-outlined">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class="product-card__info">
+              <div class="product-card__row">
+                <h3 class="product-card__name">Sofá Tierra</h3>
+                <span class="product-card__price">$1.250.000</span>
+              </div>
+              <span class="product-card__view-more">Ver más</span>
+            </div>
+          </article>
+
+          <!-- Producto 2: Rack Andes con galería al pasar el cursor -->
+          <article class="product-card">
+            <div class="product-card__image-wrapper product-gallery-hover">
+              <img 
+                src="assets/images/rack-andes-1.jpg" 
+                alt="Rack Andes - Fotografía 1" 
+                class="product-card__image product-gallery-img is-active"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <img 
+                src="assets/images/rack-andes-2.jpg" 
+                alt="Rack Andes - Fotografía 2" 
+                class="product-card__image product-gallery-img"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <button class="product-card__cart-btn" aria-label="Agregar Rack Andes al carrito">
+                <span class="material-symbols-outlined">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class="product-card__info">
+              <div class="product-card__row">
+                <h3 class="product-card__name">Rack Andes</h3>
+                <span class="product-card__price">$890.000</span>
+              </div>
+              <span class="product-card__view-more">Ver más</span>
+            </div>
+          </article>
+
+          <!-- Producto 3 -->
+          <article class="product-card">
+            <div class="product-card__image-wrapper">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXwd67D8JM4YicgkKG5R-tCvw2G91Tk8V1g66dZ8oH__x9hc727Cd_W0ZUKd9iCE0F95X8qtTmyceBZFbEv2fpE0vX-KS980hKogAXOWLrrfpzVCMrI5xt4D_IhJGhT2ERx8DUDvDG3Ls1JGFu3BjcRzCv0LnmMpLGLZNXZZYZpT4J1jC0FEOzfJMU0k2eCeYydwzsttUR2_xgr9zpL6jh_gVrW6v5ZbjsU0oftoZqwpihzejK2bU" 
+                alt="Escritorio PRO ergonómico en madera maciza con acabado mate" 
+                class="product-card__image"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <button class="product-card__cart-btn" aria-label="Agregar Escritorio PRO al carrito">
+                <span class="material-symbols-outlined">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class="product-card__info">
+              <div class="product-card__row">
+                <h3 class="product-card__name">Escritorio PRO</h3>
+                <span class="product-card__price">$650.000</span>
+              </div>
+              <span class="product-card__view-more">Ver más</span>
+            </div>
+          </article>
+
+          <!-- Producto 4 -->
+          <article class="product-card">
+            <div class="product-card__image-wrapper">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUX9dmbRRgsA5fcs13KW7UCTeEarvTl-_JGBn6h2txMDIIifboWKmwhXLKlzo5y-Wkw-AnwPqig2sXRsfpklrTK9YFD4w8T7WwVpmw-Am2sIsY5FKCT2ZkP3Nxr7LfIfSt0fCTmOjpG4sfSqC_T6YcMV-IXBm_Iea7RXan9dzrBvx44KsoMFYQRRlGNvkHa8bBznaR6huvccdHS5WQM5rc5EcUM8vfgbrHFnzxzo9HCqRSVPWXpOA" 
+                alt="Mesa redonda Origen de roble macizo" 
+                class="product-card__image"
+                loading="lazy"
+                width="400"
+                height="500"
+              >
+              <button class="product-card__cart-btn" aria-label="Agregar Mesa Origen al carrito">
+                <span class="material-symbols-outlined">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class="product-card__info">
+              <div class="product-card__row">
+                <h3 class="product-card__name">Mesa Origen</h3>
+                <span class="product-card__price">$1.100.000</span>
+              </div>
+              <span class="product-card__view-more">Ver más</span>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -148,13 +262,11 @@
   </main>
 
   <!-- ========================================================================
-       PIE DE PÁGINA (Footer)
+       PIE DE PÁGINA (Footer Modularizado)
        ======================================================================== -->
   <app-footer></app-footer>
 
   <!-- Scripts JavaScript (Vanilla) -->
   <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/home.js"></script>
 </body>
-
 </html>

@@ -3,7 +3,8 @@
  * MUEBLERÍA JOTA - LÓGICA DE LAS PÁGINAS DE AMBIENTE
  * ==========================================================================
  * Renderiza dinámicamente las Product Cards de las páginas de ambiente
- * a partir del array `PRODUCTOS` definido en `js/productos.js`.
+ * a partir del atributo `data-ambiente` del contenedor o del parámetro
+ * `?ambiente=` de la URL (soporte de `categoria.html`).
  * ==========================================================================
  */
 
@@ -23,34 +24,50 @@ function initProductosPage() {
   const contenedor = document.getElementById('productos-container');
   if (!contenedor) return;
 
+  // 1. Ambiente: prioridad al parámetro ?ambiente= de la URL, luego data-ambiente
   const urlParams = new URLSearchParams(window.location.search);
-  const ambiente = urlParams.get('ambiente') || contenedor.dataset.ambiente;
-  
+  const ambiente = urlParams.get('ambiente') || contenedor.getAttribute('data-ambiente');
+
   if (!ambiente || !METADATA[ambiente]) {
     contenedor.innerHTML = '<p class="loading-products">Categoría no encontrada.</p>';
     return;
   }
 
+  // 2. Actualizamos metadatos de la página (breadcrumb, título y descripción)
   const meta = METADATA[ambiente];
   const breadcrumb = document.getElementById('breadcrumb-current');
   const title = document.getElementById('category-title');
   const desc = document.getElementById('category-desc');
-  
+
   if (breadcrumb) breadcrumb.textContent = meta.titulo;
   if (title) title.textContent = meta.titulo.toUpperCase();
   if (desc) desc.textContent = meta.descripcion;
-  
+
   document.title = `Colección ${meta.titulo} | Mueblería Jota`;
 
+  // 3. Obtenemos los productos correspondientes
   const productos = productosPorAmbiente(ambiente);
 
-  contenedor.innerHTML = '';
-  productos.forEach((producto) => {
-    contenedor.appendChild(crearProductCard(producto));
-  });
+  // 4. Mostramos estado de carga
+  contenedor.innerHTML = '<p class="loading-products">Cargando productos...</p>';
 
-  vincularAccionesProductos(contenedor);
-  initProductGalleryHover();
+  // 5. Renderizamos las tarjetas dinámicamente
+  setTimeout(() => {
+    contenedor.innerHTML = '';
+
+    if (productos.length === 0) {
+      contenedor.innerHTML = '<p class="loading-products">Categoría no encontrada.</p>';
+      return;
+    }
+
+    productos.forEach((producto) => {
+      contenedor.appendChild(crearProductCard(producto));
+    });
+
+    // 6. Vinculamos los eventos
+    vincularAccionesProductos(contenedor);
+    initProductGalleryHover();
+  }, 400);
 }
 
 if (document.readyState === 'loading') {
