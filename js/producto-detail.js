@@ -1,27 +1,13 @@
-/**
- * ==========================================================================
- * MUEBLERÍA JOTA - LÓGICA DE LA PÁGINA DE DETALLE DE PRODUCTO
- * ==========================================================================
- * Lee el id del producto desde la URL (?id=slug), lo busca en el array
- * `PRODUCTOS` (js/productos.js) y rellena dinámicamente la página:
- *   - Miga de pan
- *   - Galería (imagen principal + miniaturas con addEventListener)
- *   - Información (nombre, precio, calificación, descripción, detalles)
- *   - Productos similares (mismo ambiente, usando crearProductCard)
- *
- * Los contenedores vacíos ya existen en producto-detalle.html; este archivo
- * solo inyecta contenido y comportamiento.
- * ==========================================================================
- */
+import { formatearPrecio, productoPorId, productosPorAmbiente } from './productos.js';
+import { crearProductCard, vincularAccionesProductos } from './product-card.js';
+import { addProductToCart } from './cart.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Obtenemos el id desde el query string: producto-detalle.html?id=slug
+async function initProductoDetail() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
 
   const producto = id ? productoPorId(id) : undefined;
 
-  // Si no existe el producto, mostramos un mensaje amigable y salimos
   if (!producto) {
     document.getElementById('detail-name').textContent = 'Producto no encontrado';
     document.getElementById('detail-description').textContent =
@@ -29,21 +15,57 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // 2. Carga asíncrona para simular la obtención de datos
-  setTimeout(() => {
-    renderizarBreadcrumb(producto);
-    renderizarGaleria(producto);
-    renderizarInformacion(producto);
-    renderizarDetalles(producto);
-    renderizarSimilares(producto);
-    vincularBotonCarrito(producto);
-  }, 400);
-});
+  // Abstraer el setTimeout a una Promesa
+  const simularPeticion = () => new Promise(resolve => setTimeout(resolve, 400));
+  
+  await simularPeticion();
 
-/**
- * Actualiza la miga de pan con el nombre y el ambiente del producto.
- * @param {Object} producto
- */
+  renderizarBreadcrumb(producto);
+  renderizarGaleria(producto);
+  renderizarInformacion(producto);
+  renderizarDetalles(producto);
+  renderizarSimilares(producto);
+  vincularBotonCarrito(producto);
+  inyectarJSONLD(producto);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initProductoDetail);
+} else {
+  initProductoDetail();
+}
+
+function inyectarJSONLD(producto) {
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.text = JSON.stringify({
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": producto.nombre,
+    "image": producto.imagenes,
+    "description": producto.descripcion,
+    "sku": producto.id,
+    "brand": {
+      "@type": "Brand",
+      "name": "Mueblería Jota"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": window.location.href,
+      "priceCurrency": "ARS",
+      "price": producto.precio,
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": producto.calificacion,
+      "reviewCount": producto.reseñas
+    }
+  });
+  document.head.appendChild(script);
+}
+
 function renderizarBreadcrumb(producto) {
   const ambienteLink = document.getElementById('detail-crumb-ambiente');
   const nombreCrumb = document.getElementById('detail-crumb-name');
@@ -58,16 +80,12 @@ function renderizarBreadcrumb(producto) {
 
   const etiqueta = etiquetasAmbiente[producto.ambiente] || 'Productos';
   if (ambienteLink) {
-    ambienteLink.href = producto.ambiente + '.html';
+    ambienteLink.href = 'categoria.html?ambiente=' + producto.ambiente;
     ambienteLink.textContent = etiqueta;
   }
   if (nombreCrumb) nombreCrumb.textContent = producto.nombre;
 }
 
-/**
- * Rellena la galería: imagen principal y miniaturas clicables.
- * @param {Object} producto
- */
 function renderizarGaleria(producto) {
   const imagenPrincipal = document.getElementById('detail-main-image');
   const contenedorThumbs = document.getElementById('detail-thumbs');
@@ -75,16 +93,13 @@ function renderizarGaleria(producto) {
   imagenPrincipal.src = producto.imagenes[0];
   imagenPrincipal.alt = producto.nombre + ' - Fotografía principal';
 
-  // Ocultamos el placeholder de carga
   contenedorThumbs.innerHTML = '';
 
-  // Si hay una sola imagen, no mostramos miniaturas
   if (producto.imagenes.length < 2) {
     contenedorThumbs.style.display = 'none';
     return;
   }
 
-  // Creamos una miniatura por imagen
   producto.imagenes.forEach((url, indice) => {
     const thumb = document.createElement('button');
     thumb.className = 'detail-gallery__thumb' + (indice === 0 ? ' is-active' : '');
@@ -98,7 +113,6 @@ function renderizarGaleria(producto) {
     thumb.appendChild(img);
 
     thumb.addEventListener('click', () => {
-      // Resaltamos la miniatura activa y actualizamos la imagen principal
       contenedorThumbs.querySelectorAll('.detail-gallery__thumb').forEach((t) => {
         t.classList.remove('is-active');
       });
@@ -111,10 +125,6 @@ function renderizarGaleria(producto) {
   });
 }
 
-/**
- * Rellena la columna de información (nombre, precio, rating, etc.).
- * @param {Object} producto
- */
 function renderizarInformacion(producto) {
   document.getElementById('detail-name').textContent = producto.nombre;
   document.getElementById('detail-subtitle').textContent =
@@ -124,7 +134,6 @@ function renderizarInformacion(producto) {
   document.getElementById('detail-reviews').textContent =
     '(' + producto.reseñas + ' reseñas)';
 
-  // Calificación en estrellas
   const contenedorRating = document.getElementById('detail-rating');
   const estrellas = contenedorRating.querySelectorAll('.detail-info__star');
   estrellas.forEach((estrella, indice) => {
@@ -135,17 +144,12 @@ function renderizarInformacion(producto) {
     }
   });
 
-  // Detalles rápidos
   document.getElementById('quick-dimension').textContent = producto.dimensiones;
   document.getElementById('quick-material').textContent = producto.material;
   document.getElementById('quick-fabricacion').textContent =
     'Nacional · ' + producto.fabricacion;
 }
 
-/**
- * Rellena la sección de descripción y los detalles técnicos.
- * @param {Object} producto
- */
 function renderizarDetalles(producto) {
   document.getElementById('detail-descripcion').textContent = producto.descripcion;
   document.getElementById('spec-material').textContent = producto.material;
@@ -154,11 +158,6 @@ function renderizarDetalles(producto) {
   document.getElementById('spec-fabricacion').textContent = producto.fabricacion;
 }
 
-/**
- * Renderiza en la grilla de productos similares los demás productos del
- * mismo ambiente (con crearProductCard de js/product-card.js).
- * @param {Object} producto
- */
 function renderizarSimilares(producto) {
   const grilla = document.getElementById('detail-related-grid');
   grilla.innerHTML = '';
@@ -171,29 +170,19 @@ function renderizarSimilares(producto) {
     grilla.appendChild(crearProductCard(p));
   });
 
-  // Reutilizamos el vínculo de acciones común (Ver más / carrito)
   vincularAccionesProductos(grilla);
 }
 
-/**
- * Vincula el feedback del botón "Añadir al carrito" del detalle.
- * @param {Object} producto
- */
 function vincularBotonCarrito(producto) {
   const boton = document.getElementById('detail-add');
   if (!boton) return;
 
-  const badge = document.querySelector('.cart-badge');
-
   boton.addEventListener('click', () => {
-    if (!badge) return;
-    let contador = parseInt(badge.textContent, 10) || 0;
-    contador++;
-    badge.textContent = contador;
-
-    badge.style.transform = 'scale(1.35)';
-    setTimeout(() => {
-      badge.style.transform = 'scale(1)';
-    }, 200);
+    addProductToCart({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen: producto.imagenes?.[0],
+    });
   });
 }

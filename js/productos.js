@@ -12,12 +12,13 @@
  */
 
 // Array global de productos (accesible desde otros archivos .js)
-const PRODUCTOS = [
+export const PRODUCTOS = [
   /* ========================================================================
      AMBIENTE: LIVING
      ======================================================================== */
   {
     id: 'rack-andes',
+    destacado: true,
     nombre: 'Rack Andes',
     precio: 450000,
     ambiente: 'living',
@@ -89,6 +90,7 @@ const PRODUCTOS = [
      ======================================================================== */
   {
     id: 'mesa-antigravity',
+    destacado: true,
     nombre: 'Mesa Antigravity',
     precio: 2450000,
     ambiente: 'comedor',
@@ -200,6 +202,7 @@ const PRODUCTOS = [
   },
   {
     id: 'isla-gourmet',
+    destacado: true,
     nombre: 'Isla Gourmet',
     precio: 920000,
     ambiente: 'cocina',
@@ -219,6 +222,7 @@ const PRODUCTOS = [
      ======================================================================== */
   {
     id: 'cama-serena',
+    destacado: true,
     nombre: 'Cama Serena',
     precio: 780000,
     ambiente: 'dormitorio',
@@ -289,7 +293,7 @@ const PRODUCTOS = [
     ambiente: 'oficina',
     tipo: 'Escritorio',
     descripcion: 'Escritorio ejecutivo en nogal macizo con pasacables oculto, diseño ergonómico para trabajar con estilo.',
-    imagenes: ["../assets/images/escritorio pro.jpg", "../assets/images/escritorio pro 2.jpg", "../assets/images/escritorio pro 3.jpeg"],
+    imagenes: ["assets/images/escritorio pro.jpg", "assets/images/escritorio pro 2.jpg", "assets/images/escritorio pro 3.jpeg"],
     material: 'Nogal macizo con pasacables oculto',
     color: 'Nogal oscuro/ Negro',
     dimensiones: 'Al 750 mm · An 1600 mm · Pr 800 mm',
@@ -349,7 +353,7 @@ const PRODUCTOS = [
  * @param {string} ambiente - 'living', 'comedor', 'cocina', 'oficina' o 'dormitorio'
  * @returns {Array} productos que coinciden con el ambiente
  */
-function productosPorAmbiente(ambiente) {
+export function productosPorAmbiente(ambiente) {
   return PRODUCTOS.filter((producto) => producto.ambiente === ambiente);
 }
 
@@ -358,7 +362,7 @@ function productosPorAmbiente(ambiente) {
  * @param {string} id - Identificador único del producto
  * @returns {Object|undefined} el producto encontrado o undefined
  */
-function productoPorId(id) {
+export function productoPorId(id) {
   return PRODUCTOS.find((producto) => producto.id === id);
 }
 
@@ -367,6 +371,6 @@ function productoPorId(id) {
  * @param {number} numero - Ej: 450000
  * @returns {string} Ej: "$450.000"
  */
-function formatearPrecio(numero) {
+export function formatearPrecio(numero) {
   return '$' + numero.toLocaleString('es-AR');
 }
