@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'muebleria-jota-cart';
+const STORAGE_KEY = 'muebleria_jota_cart_v2';
 
 export function getCart() {
   try {

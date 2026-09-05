@@ -1404,6 +1404,13 @@ function saveStoredCart(cart) {
 function initCartSystem() {
   ensureCartDrawerDOM();
   updateCartUI();
+  initStaticProductCards();
+
+  // Sistema módular (product-card/search) escribe en la MISMA key y emite 'cart:updated'.
+  // Aquí refrescamos el badge para que cuente exactamente lo mismo que el drawer.
+  document.addEventListener('cart:updated', () => {
+    updateCartUI();
+  });
 
   const cartTriggerBtns = document.querySelectorAll('.action-btn[aria-label*="carrito"], .action-btn .cart-badge');
   cartTriggerBtns.forEach((elem) => {
@@ -1415,6 +1422,21 @@ function initCartSystem() {
   });
 
   initAddToCartButtons();
+}
+
+/**
+ * Tarjetas estáticas (destacados de index.html): navegan al detalle usando su data-id.
+ * Las tarjetas dinámicas (con data-accion) ya son manejadas por product-card.js.
+ */
+function initStaticProductCards() {
+  document.addEventListener('click', (event) => {
+    const card = event.target.closest('.product-card');
+    if (!card || !card.dataset.id) return;
+    if (card.querySelector('[data-accion]')) return;
+    if (event.target.closest('.product-card__cart-btn')) return;
+
+    window.location.href = 'producto-detalle.html?id=' + encodeURIComponent(card.dataset.id);
+  });
 }
 
 function ensureCartDrawerDOM() {
@@ -1649,10 +1671,6 @@ function addToCart(productData) {
   showToast('¡Agregado al carrito!', `${productData.name} se añadió a tu pedido.`, 'Ver Carrito', () => {
     openCartDrawer();
   });
-
-  setTimeout(() => {
-    openCartDrawer();
-  }, 300);
 }
 
 function updateCartUI() {
@@ -1676,27 +1694,9 @@ function animateCartBadges() {
 }
 
 function initAddToCartButtons() {
-  const detailAddBtn = document.querySelector('.detail-info__add');
-  if (detailAddBtn) {
-    detailAddBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const rawPrice = (document.querySelector('.detail-info__price-value')?.textContent || '$1.250.000').replace(/[^0-9]/g, '');
-      const name = document.querySelector('.detail-info__name')?.textContent.trim() || 'Sofá Tierra';
-      const mainImg = document.getElementById('detail-main-image')?.src || 'assets/images/sofa-tierra-1.jpg';
-      const variant = document.querySelector('.detail-info__subtitle')?.textContent.trim() || 'Colección Living';
-
-      addToCart({
-        id: name.toLowerCase().replace(/\s+/g, '-'),
-        name: name,
-        price: parseInt(rawPrice, 10) || 1250000,
-        image: mainImg,
-        variant: variant,
-        quantity: 1
-      });
-    });
-  }
-
-  document.querySelectorAll('.product-card__cart-btn').forEach((btn) => {
+  // Las tarjetas dinámicas ya enlazan su botón desde product-card.js (data-accion="carrito").
+  // Solo enlazamos tarjetas estáticas (destacados de index.html) para no duplicar el agregado.
+  document.querySelectorAll('.product-card__cart-btn:not([data-accion])').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();

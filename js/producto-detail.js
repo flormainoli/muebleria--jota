@@ -27,6 +27,20 @@ async function initProductoDetail() {
   renderizarSimilares(producto);
   vincularBotonCarrito(producto);
   inyectarJSONLD(producto);
+  actualizarSEOCabecera(producto);
+}
+
+function actualizarSEOCabecera(producto) {
+  const tituloPagina = producto.nombre + ' | Mueblería Jota';
+  document.title = tituloPagina;
+
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+
+  if (ogTitle) ogTitle.setAttribute('content', tituloPagina);
+  if (ogImage) ogImage.setAttribute('content', producto.imagenes?.[0] || '');
+  if (ogDescription) ogDescription.setAttribute('content', producto.descripcion.substring(0, 150));
 }
 
 if (document.readyState === 'loading') {
@@ -176,6 +190,8 @@ function renderizarSimilares(producto) {
 function vincularBotonCarrito(producto) {
   const boton = document.getElementById('detail-add');
   if (!boton) return;
+
+  boton.setAttribute('aria-label', 'Añadir ' + producto.nombre + ' al carrito');
 
   boton.addEventListener('click', () => {
     addProductToCart({

@@ -58,31 +58,6 @@ class AppHeader extends HTMLElement {
         <div class="header-search__results" id="search-results"></div>
       </div>
 
-      <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
-      <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
-        <div class="cart-drawer__header">
-          <h2>Mi carrito</h2>
-          <button id="cart-close" class="cart-drawer__close" type="button" aria-label="Cerrar carrito">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </div>
-
-        <div class="cart-drawer__content">
-          <div id="cart-empty" class="cart-empty">Tu carrito está vacío.</div>
-          <div id="cart-items" class="cart-items"></div>
-        </div>
-
-        <div class="cart-drawer__footer">
-          <div class="cart-drawer__summary">
-            <span>Total</span>
-            <strong id="cart-total">$0</strong>
-          </div>
-          <div class="cart-drawer__actions">
-            <button id="cart-clear" class="btn btn-outline cart-drawer__clear" type="button">Vaciar</button>
-            <button id="cart-checkout" class="btn btn-primary" type="button">Finalizar compra</button>
-          </div>
-        </div>
-      </aside>
     `;
 
     // Highlight active link based on current page

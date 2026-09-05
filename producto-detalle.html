@@ -29,6 +29,7 @@
   <!-- Web Components and Modules -->
   <script src="js/components.js" type="module"></script>
   <script src="js/search.js" type="module"></script>
+  <script src="js/producto-detail.js" type="module"></script>
 </head>
 <body>
 
@@ -49,9 +50,9 @@
         <span class="category-breadcrumb-separator">/</span>
         <a href="productos.html">Productos</a>
         <span class="category-breadcrumb-separator">/</span>
-        <a href="living.html">Living</a>
+        <a href="living.html" id="detail-crumb-ambiente">Living</a>
         <span class="category-breadcrumb-separator">/</span>
-        <span>Sofá Tierra</span>
+        <span id="detail-crumb-name">Sofá Tierra</span>
       </nav>
     </div>
 
@@ -104,30 +105,27 @@
           <!-- Información (Derecha) -->
           <div class="detail-info">
             <div class="detail-info__header">
-              <div class="detail-info__rating">
+              <div class="detail-info__rating" id="detail-rating">
                 <span class="material-symbols-outlined detail-info__star" aria-hidden="true">star</span>
                 <span class="material-symbols-outlined detail-info__star" aria-hidden="true">star</span>
                 <span class="material-symbols-outlined detail-info__star" aria-hidden="true">star</span>
                 <span class="material-symbols-outlined detail-info__star" aria-hidden="true">star</span>
                 <span class="material-symbols-outlined detail-info__star" aria-hidden="true">star</span>
-                <span class="detail-info__reviews">(12 reseñas)</span>
+                <span class="detail-info__reviews" id="detail-reviews">(12 reseñas)</span>
               </div>
-              <h1 class="detail-info__name">Sofá Tierra</h1>
-              <p class="detail-info__subtitle">Colección Living</p>
-              <p class="detail-info__description">
+              <h1 class="detail-info__name" id="detail-name">Sofá Tierra</h1>
+              <p class="detail-info__subtitle" id="detail-subtitle">Colección Living</p>
+              <p class="detail-info__description" id="detail-description">
                 Una pieza escultural fabricada en Argentina. El Sofá Tierra fusiona curvas orgánicas con un confort envolvente, pensado para ser el centro visual de espacios refinados.
               </p>
               <div class="detail-info__price">
-                <span class="detail-info__price-value">$1.250.000</span>
+                <span class="detail-info__price-value" id="detail-price">$1.250.000</span>
                 <span class="detail-info__price-note">Envíos a todo el país. Producción bajo pedido.</span>
               </div>
               <button 
                 class="btn btn-primary detail-info__add" 
-                aria-label="Añadir Sofá Tierra al carrito"
-                data-name="Sofá Tierra"
-                data-price="$1.250.000"
-                data-image="assets/images/sofa-tierra-1.jpg"
-                data-variant="Colección Living · Nogal macizo y bouclé"
+                id="detail-add"
+                aria-label="Añadir al carrito"
               >
                 Añadir al carrito
                 <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
@@ -138,15 +136,15 @@
             <div class="detail-info__quick">
               <div class="detail-info__quick-row">
                 <span class="detail-info__quick-label">Dimensiones</span>
-                <span class="detail-info__quick-value">Al 780 mm · An 2200 mm · Pr 950 mm</span>
+                <span class="detail-info__quick-value" id="quick-dimension">Al 780 mm · An 2200 mm · Pr 950 mm</span>
               </div>
               <div class="detail-info__quick-row">
                 <span class="detail-info__quick-label">Materiales</span>
-                <span class="detail-info__quick-value">Nogal macizo, lino y tela bouclé</span>
+                <span class="detail-info__quick-value" id="quick-material">Nogal macizo, lino y tela bouclé</span>
               </div>
               <div class="detail-info__quick-row">
                 <span class="detail-info__quick-label">Fabricación</span>
-                <span class="detail-info__quick-value">Nacional · Argentina</span>
+                <span class="detail-info__quick-value" id="quick-fabricacion">Nacional · Argentina</span>
               </div>
             </div>
           </div>
@@ -163,12 +161,7 @@
           <!-- Descripción -->
           <div class="detail-specs__col">
             <h2 class="detail-specs__title">DESCRIPCIÓN</h2>
-            <p class="detail-specs__text">
-              El Sofá Tierra nace de la fusión entre la nobleza de los materiales naturales y la precisión del diseño contemporáneo. Su estructura de nogal macizo se complementa con tapizados de lino y bouclé seleccionados a mano, logrando una pieza que invita al descanso sin resignar estética.
-            </p>
-            <p class="detail-specs__text">
-              Cada Sofá Tierra es construido por artesanos locales en nuestro taller, garantizando una pieza única, personalizada y con un acabado de nivel internacional.
-            </p>
+            <p class="detail-specs__text" id="detail-descripcion"></p>
           </div>
 
           <!-- Detalles técnicos -->
@@ -177,27 +170,19 @@
             <ul class="detail-specs__list">
               <li class="detail-specs__item">
                 <span class="detail-specs__item-label">Material</span>
-                <span class="detail-specs__item-value">Nogal macizo, lino y bouclé</span>
+                <span class="detail-specs__item-value" id="spec-material"></span>
               </li>
               <li class="detail-specs__item">
                 <span class="detail-specs__item-label">Dimensiones</span>
-                <span class="detail-specs__item-value">Al 780 x An 2200 x Pr 950 mm</span>
+                <span class="detail-specs__item-value" id="spec-dimension"></span>
               </li>
               <li class="detail-specs__item">
                 <span class="detail-specs__item-label">Color</span>
-                <span class="detail-specs__item-value">Nogal oscuro / Crema</span>
+                <span class="detail-specs__item-value" id="spec-color"></span>
               </li>
               <li class="detail-specs__item">
                 <span class="detail-specs__item-label">Fabricación</span>
-                <span class="detail-specs__item-value">Hecho en Argentina</span>
-              </li>
-              <li class="detail-specs__item">
-                <span class="detail-specs__item-label">Terminaciones</span>
-                <span class="detail-specs__item-value">Lustre a muñequilla y cera natural</span>
-              </li>
-              <li class="detail-specs__item">
-                <span class="detail-specs__item-label">Cuidados</span>
-                <span class="detail-specs__item-value">Limpiar con paño seco. Evitar sol directo prolongado.</span>
+                <span class="detail-specs__item-value" id="spec-fabricacion"></span>
               </li>
             </ul>
           </div>
@@ -220,99 +205,8 @@
           </a>
         </div>
 
-        <div class="products-grid">
-          <!-- Producto similar 1 -->
-          <article class="product-card">
-            <div class="product-card__image-wrapper">
-              <img 
-                src="assets/images/rack-andes-1.jpg" 
-                alt="Rack Andes" 
-                class="product-card__image"
-                loading="lazy"
-              >
-              <button class="product-card__cart-btn" aria-label="Agregar Rack Andes al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__row">
-                <h3 class="product-card__name">Rack Andes</h3>
-                <span class="product-card__price">$890.000</span>
-              </div>
-              <span class="product-card__material">Nogal macizo</span>
-              <span class="product-card__view-more">Ver más</span>
-            </div>
-          </article>
-
-          <!-- Producto similar 2 -->
-          <article class="product-card">
-            <div class="product-card__image-wrapper">
-              <img 
-                src="assets/images/mesa-origen-1.jpg" 
-                alt="Mesa Origen" 
-                class="product-card__image"
-                loading="lazy"
-              >
-              <button class="product-card__cart-btn" aria-label="Agregar Mesa Origen al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__row">
-                <h3 class="product-card__name">Mesa Origen</h3>
-                <span class="product-card__price">$1.100.000</span>
-              </div>
-              <span class="product-card__material">Roble macizo</span>
-              <span class="product-card__view-more">Ver más</span>
-            </div>
-          </article>
-
-          <!-- Producto similar 3 -->
-          <article class="product-card">
-            <div class="product-card__image-wrapper">
-              <img 
-                src="assets/images/escritorio pro 2.jpg" 
-                alt="Escritorio PRO" 
-                class="product-card__image"
-                loading="lazy"
-              >
-              <button class="product-card__cart-btn" aria-label="Agregar Escritorio PRO al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__row">
-                <h3 class="product-card__name">Escritorio PRO</h3>
-                <span class="product-card__price">$650.000</span>
-              </div>
-              <span class="product-card__material">Madera maciza</span>
-              <span class="product-card__view-more">Ver más</span>
-            </div>
-          </article>
-
-          <!-- Producto similar 4 -->
-          <article class="product-card">
-            <div class="product-card__image-wrapper">
-              <img 
-                src="assets/images/sofa-tierra-2.jpg" 
-                alt="Sofá Tierra" 
-                class="product-card__image"
-                loading="lazy"
-              >
-              <button class="product-card__cart-btn" aria-label="Agregar Sofá Tierra al carrito">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__row">
-                <h3 class="product-card__name">Sofá Tierra</h3>
-                <span class="product-card__price">$1.250.000</span>
-              </div>
-              <span class="product-card__material">Nogal y bouclé</span>
-              <span class="product-card__view-more">Ver más</span>
-            </div>
-          </article>
-
+        <div class="products-grid" id="detail-related-grid">
+          <!-- Renderizado dinámico por producto-detail.js -->
         </div>
       </div>
     </section>
