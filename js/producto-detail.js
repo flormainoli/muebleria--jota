@@ -15,11 +15,8 @@ async function initProductoDetail() {
     return;
   }
 
-  // Abstraer el setTimeout a una Promesa
-  const simularPeticion = () => new Promise(resolve => setTimeout(resolve, 400));
-  
-  await simularPeticion();
-
+  // Renderizado inmediato: el HTML estático no contiene datos de ningún
+  // producto, por lo que no hace falta simular latencia de red.
   renderizarBreadcrumb(producto);
   renderizarGaleria(producto);
   renderizarInformacion(producto);
