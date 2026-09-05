@@ -85,3 +85,127 @@
 .btn-link:hover .material-symbols-outlined {
   transform: translateX(4px);
 }
+
+/* --------------------------------------------------------------------------
+   BÚSQUEDA DE PRODUCTOS (Lupa de la navegación)
+   -------------------------------------------------------------------------- */
+.header-search-toggle {
+  /* Hereda el estilo de los demás botones de acción del header */
+}
+
+/* Panel desplegable compacto, anclado bajo la barra de navegación */
+.header-search {
+  position: fixed;
+  top: 92px;
+  right: 20px;
+  z-index: 1005;
+  width: min(420px, calc(100vw - 40px));
+  background-color: var(--color-surface);
+  border: 1px solid rgba(210, 196, 188, 0.45);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+
+.header-search.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Barra de entrada + icono + botón cerrar */
+.header-search__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 10px;
+  border: 1px solid rgba(210, 196, 188, 0.5);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-container);
+}
+
+.header-search__icon {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+}
+
+.header-search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  outline: none;
+}
+
+.header-search__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.header-search__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  transition: var(--transition-smooth);
+}
+
+.header-search__close:hover {
+  background-color: var(--color-surface-container);
+  color: var(--color-primary);
+}
+
+/* Área de resultados (grilla compacta con scroll máximo) */
+.header-search__results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.header-search__results .product-card {
+  gap: 10px;
+}
+
+.header-search__results .product-card__name {
+  font-size: 0.95rem;
+}
+
+.header-search__results .product-card__price {
+  font-size: 0.8rem;
+}
+
+.header-search__results .product-card__view-more {
+  font-size: 0.6rem;
+}
+
+/* Mensajes de estado (vacío / sugerencia) */
+.search-results__empty,
+.search-results__hint {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* En pantallas muy angostas, una sola columna de resultados */
+@media (max-width: 380px) {
+  .header-search__results {
+    grid-template-columns: 1fr;
+  }
+}

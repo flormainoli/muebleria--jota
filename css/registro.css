@@ -1,0 +1,91 @@
+/* --------------------------------------------------------------------------
+   16. PÁGINA REGISTRO / SUSCRIPCIÓN
+   -------------------------------------------------------------------------- */
+.registro-main {
+  padding-bottom: var(--section-gap);
+}
+
+.registro-main__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .registro-main__grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.registro-main .contact-form-card {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .registro-main .contact-form-card {
+    max-width: 560px;
+  }
+}
+
+/* Checkbox de suscripción */
+.registro-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+.registro-checkbox input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* Mensajes de error por campo */
+.registro-form__error {
+  font-size: 0.85rem;
+  color: #a94442;
+}
+
+/* Mensaje de error general */
+.registro-form__general {
+  font-size: 0.85rem;
+  color: #a94442;
+}
+
+/* Mensaje de éxito */
+.registro-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.registro-success__icon {
+  font-size: 3rem;
+  color: var(--color-primary);
+}
+
+.registro-success__text {
+  font-size: 1rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+/* Encabezado consistente con el resto de páginas */
+.registro-header {
+  padding-top: 140px;
+  padding-bottom: 48px;
+  text-align: center;
+}

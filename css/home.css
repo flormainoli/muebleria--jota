@@ -1,3 +1,5 @@
+@import "./cards.css";
+
 /* --------------------------------------------------------------------------
    5. HERO SECTION (HOME)
    -------------------------------------------------------------------------- */
@@ -114,128 +116,9 @@
   line-height: 1.2;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: var(--gutter);
-}
-
-/* --bp-sm to --bp-md */ @media (min-width: 640px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* --bp-lg: 1024px */ @media (min-width: 1024px) {
-  .products-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.product-card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
 /* --bp-lg: 1024px */ @media (min-width: 1024px) {
   .section-featured .product-card:nth-child(even) {
     margin-top: 40px;
-  }
-}
-
-.product-card__image-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background-color: var(--color-surface-container);
-}
-
-.product-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@media (hover: hover) {
-  .product-card:hover .product-card__image {
-    transform: scale(1.06);
-  }
-}
-
-/* Galería de imágenes alternadas al pasar el cursor (Hover) */
-.product-gallery-hover {
-  position: relative;
-}
-
-.product-gallery-hover .product-gallery-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  pointer-events: none;
-}
-
-.product-gallery-hover .product-gallery-img.is-active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-@media (hover: hover) {
-  .product-card:hover .product-gallery-hover .product-gallery-img.is-active {
-    transform: scale(1.06);
-  }
-}
-
-
-.product-card__info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.product-card__row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.product-card__name {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--color-primary);
-}
-
-.product-card__price {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-}
-
-.product-card__view-more {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  display: inline-block;
-  margin-top: 4px;
-}
-
-@media (hover: hover) {
-  .product-card:hover .product-card__view-more {
-    text-decoration: underline;
-    text-underline-offset: 4px;
   }
 }
 

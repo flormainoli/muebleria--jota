@@ -22,13 +22,16 @@ class AppHeader extends HTMLElement {
               <li><a href="contacto.html" class="nav-link">Contacto</a></li>
             </ul>
             <div class="nav-actions">
+              <button class="action-btn header-search-toggle" aria-label="Buscar productos" aria-expanded="false" type="button">
+                <span class="material-symbols-outlined">search</span>
+              </button>
               <button id="cart-trigger" class="action-btn" type="button" aria-label="Ver carrito de compras" aria-controls="cart-drawer" aria-expanded="false">
                 <span class="material-symbols-outlined">shopping_bag</span>
                 <span class="cart-badge" aria-label="Artículos en el carrito">0</span>
               </button>
-              <button class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario" type="button">
+              <a href="registro.html" class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario">
                 <span class="material-symbols-outlined">person</span>
-              </button>
+              </a>
               <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" type="button">
                 <span></span><span></span><span></span>
               </button>
@@ -36,6 +39,24 @@ class AppHeader extends HTMLElement {
           </nav>
         </div>
       </header>
+
+      <div class="header-search" id="header-search" aria-hidden="true">
+        <div class="header-search__bar">
+          <span class="material-symbols-outlined header-search__icon" aria-hidden="true">search</span>
+          <input
+            type="search"
+            id="search-input-header"
+            class="header-search__input"
+            placeholder="Buscar en Mueblería Jota..."
+            autocomplete="off"
+            aria-label="Buscar productos"
+          >
+          <button class="header-search__close" id="header-search-close" type="button" aria-label="Cerrar búsqueda">
+            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="header-search__results" id="search-results"></div>
+      </div>
 
       <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
       <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">

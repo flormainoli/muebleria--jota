@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | Mueblería Jota</title>
+  <meta name="description" content="Registrate en Mueblería Jota para recibir ofertas, novedades y promociones exclusivas de nuestras colecciones de autor.">
+  <link rel="canonical" href="registro.html">
+  <meta property="og:title" content="Registro | Mueblería Jota">
+  <meta property="og:description" content="Registrate en Mueblería Jota para recibir ofertas, novedades y promociones exclusivas.">
+
+  <!-- Google Fonts: Bodoni Moda (Titulares) y Manrope (Cuerpo y detalles) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Iconos de Material Symbols -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- Hojas de estilos individuales -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/registro.css">
+  <!-- Web Components and Modules -->
+  <script src="js/components.js" type="module"></script>
+  <script src="js/search.js" type="module"></script>
+</head>
+
+<body>
+
+  <app-header opaque></app-header>
+
+  <!-- ========================================================================
+       CONTENIDO PRINCIPAL (Main)
+       ======================================================================== -->
+  <main>
+
+    <!-- 1. ENCABEZADO DE REGISTRO -->
+    <section class="contact-header">
+      <div class="container">
+        <h1 class="category-page-title">Registro</h1>
+        <p class="category-page-desc">
+          Registrate para recibir ofertas, novedades y promociones exclusivas de nuestras colecciones de autor.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. FORMULARIO DE REGISTRO -->
+    <section class="registro-main" aria-label="Formulario de registro">
+      <div class="container">
+        <div class="registro-main__grid">
+          <div class="contact-form-card">
+            <form class="contact-form" id="registro-form" novalidate>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="registro-nombre">Nombre</label>
+                <input
+                  class="contact-form__input"
+                  id="registro-nombre"
+                  name="nombre"
+                  type="text"
+                  placeholder="Ej. Juan Pérez"
+                  autocomplete="name"
+                >
+                <span class="registro-form__error" id="error-nombre" role="alert" hidden></span>
+              </div>
+
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="registro-email">Email</label>
+                <input
+                  class="contact-form__input"
+                  id="registro-email"
+                  name="email"
+                  type="email"
+                  placeholder="juan@ejemplo.com"
+                  autocomplete="email"
+                >
+                <span class="registro-form__error" id="error-email" role="alert" hidden></span>
+              </div>
+
+              <div class="contact-form__field">
+                <label class="registro-checkbox" for="registro-suscripcion">
+                  <input type="checkbox" id="registro-suscripcion" name="suscripcion">
+                  <span>
+                    Quiero recibir ofertas, novedades y promociones de Mueblería Jota.
+                  </span>
+                </label>
+                <span class="registro-form__error" id="error-suscripcion" role="alert" hidden></span>
+              </div>
+
+              <span class="registro-form__general" id="registro-general-error" role="alert" hidden></span>
+
+              <div class="contact-form__submit">
+                <button class="btn btn-primary" type="submit">
+                  Registrarme
+                  <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                </button>
+              </div>
+            </form>
+
+            <!-- Mensaje de éxito -->
+            <div class="registro-success" id="registro-success" hidden>
+              <span class="registro-success__icon material-symbols-outlined" aria-hidden="true">check_circle</span>
+              <p class="registro-success__text">
+                ¡Gracias por registrarte! A partir de ahora vas a recibir nuestras novedades en tu email.
+              </p>
+              <a class="btn btn-outline" href="productos.html">Explorar colecciones</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <app-footer></app-footer>
+
+  <!-- Scripts JavaScript (Vanilla) -->
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/registro.js"></script>
+
+</body>
+</html>
