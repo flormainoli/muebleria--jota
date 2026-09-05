@@ -286,6 +286,7 @@ function initUserProfileMenu() {
     renderUserDropdownContent(dropdown, getAuthUser());
 
     btn.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       const isOpen = dropdown.classList.toggle('is-open');
       btn.setAttribute('aria-expanded', isOpen);

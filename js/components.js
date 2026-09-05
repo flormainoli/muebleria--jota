@@ -29,9 +29,9 @@ class AppHeader extends HTMLElement {
                 <span class="material-symbols-outlined">shopping_bag</span>
                 <span class="cart-badge" aria-label="Artículos en el carrito">0</span>
               </button>
-              <a href="registro.html" class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario">
+              <button type="button" class="action-btn user-avatar-btn" aria-label="Mi cuenta de usuario">
                 <span class="material-symbols-outlined">person</span>
-              </a>
+              </button>
               <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" type="button">
                 <span></span><span></span><span></span>
               </button>
